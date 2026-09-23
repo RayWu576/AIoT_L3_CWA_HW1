@@ -18,6 +18,8 @@
 
 ![Taiwan Weather Forecast Workflow](assets/workflow.jpg)
 
+> 💡 **詳細執行計畫與任務清單**：請參閱 [myplan/workflow.md](myplan/workflow.md)。
+
 ---
 
 ## 🏗️ 系統資料流架構 (Data Pipeline)
