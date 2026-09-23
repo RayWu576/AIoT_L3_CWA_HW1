@@ -57,10 +57,10 @@ AIoT_L3_CWA_HW1/
 - [x] **03. 中央氣象署 CWA 平台**：註冊帳號、取得專屬 `API Authorization Key` 並確認目標資料集代碼。
 
 ### 階段二：API 串接與資料解析處理 (Steps 04 ~ 07)
-- [ ] **04. API 資料取得**：撰寫 Python `requests` 腳本，傳入 API Key 取得預報 JSON。
-- [ ] **05. JSON 資料結構解析**：分析巢狀層級，定位 `locations`、分區名稱與氣象要素。
-- [ ] **06. 提取最高與最低氣溫**：萃取 `MinT`（最低溫）與 `MaxT`（最高溫）之時間序列數據。
-- [ ] **07. 資料整理與預覽**：使用 `pandas.DataFrame` 整理為二維表格，確認格式無誤。
+- [x] **04. API 資料取得**：撰寫 Python `requests` 腳本，傳入 API Key 取得預報 JSON。
+- [x] **05. JSON 資料結構解析**：分析巢狀層級，定位 `locations`、分區名稱與氣象要素。
+- [x] **06. 提取最高與最低氣溫**：萃取 `MinT`（最低溫）與 `MaxT`（最高溫）之時間序列數據。
+- [x] **07. 資料整理與預覽**：使用 `pandas.DataFrame` 整理為二維表格，確認格式無誤。
 
 ### 階段三：資料庫架構設計與持久化 (Steps 08 ~ 10)
 - [ ] **08. 建立 SQLite 資料庫**：透過 `sqlite3` 建立本地 `data.db`。
