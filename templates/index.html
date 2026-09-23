@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title> Taiwan Weather Dashboard </title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, "Microsoft JhengHei", sans-serif; background-color: #f5f7fa; margin: 0; padding: 0; }
+    .container { width: 90%; max-width: 1000px; margin: 40px auto; }
+    h1 { margin-bottom: 5px; }
+    .subtitle { color: #666; margin-bottom: 30px; }
+    .card { background: white; padding: 24px; margin-bottom: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+    select { padding: 10px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: center; }
+    th { background-color: #f0f2f5; }
+    .chart-container { height: 400px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1> Taiwan Weather Dashboard </h1>
+  <div class="subtitle"> 中央氣象署一週溫度預報 </div>
+  {% if regions %}
+  <div class="card">
+    <h2> 選擇地區 </h2>
+    <form method="GET">
+      <select name="region" onchange="this.form.submit()" >
+        {% for region in regions %}
+        <option value="{{ region }}" {% if region == selected_region %} selected {% endif %}> {{ region }} </option>
+        {% endfor %}
+      </select>
+    </form>
+  </div>
+  <div class="card">
+    <h2> {{ selected_region }} 一週溫度趨勢 </h2>
+    <div class="chart-container">
+      <canvas id="temperatureChart"></canvas>
+    </div>
+  </div>
+  <div class="card">
+    <h2> 詳細資料 </h2>
+    <table>
+      <thead>
+        <tr>
+          <th> 地區 </th>
+          <th> 日期 </th>
+          <th> 最低溫 </th>
+          <th> 最高溫 </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td> {{ row["regionName"] }} </td>
+          <td> {{ row["dataDate"] }} </td>
+          <td> {{ row["minT"] }} °C </td>
+          <td> {{ row["maxT"] }} °C </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card">
+    <h2> 尚無氣象資料 </h2>
+    <p> 請先執行 fetch_data.py 取得資料。 </p>
+  </div>
+  {% endif %}
+</div>
+{% if regions %}
+<script>
+  const labels = {{ labels | tojson }};
+  const minTemperature = {{ min_t | tojson }};
+  const maxTemperature = {{ max_t | tojson }};
+  const ctx = document.getElementById("temperatureChart");
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        { label: "最低溫 (°C)", data: minTemperature, tension: 0.25 },
+        { label: "最高溫 (°C)", data: maxTemperature, tension: 0.25 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, scales: { y: { title: { display: true, text: "Temperature (°C)" } } } }
+  });
+</script>
+{% endif %}
+</body>
+</html>

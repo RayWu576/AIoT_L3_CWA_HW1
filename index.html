@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title> Taiwan Weather Dashboard </title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, "Microsoft JhengHei", sans-serif; background: #f5f7fa; margin: 0; }
+    .container { width: 90%; max-width: 1000px; margin: 40px auto; }
+    .card { background: white; padding: 24px; margin-bottom: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    select { padding: 10px; font-size: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+    th { background: #f0f2f5; }
+    .chart-container { height: 400px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Taiwan Weather Dashboard </h1>
+    <p> 中央氣象署一週溫度預報 </p>
+    <div class="card">
+      <h2> 選擇地區 </h2>
+      <select id="regionSelect"></select>
+    </div>
+    <div class="card">
+      <h2 id="chartTitle"> 一週溫度趨勢 </h2>
+      <div class="chart-container">
+        <canvas id="temperatureChart"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <h2> 詳細資料 </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>地區</th>
+            <th>日期</th>
+            <th>最低溫</th>
+            <th>最高溫</th>
+          </tr>
+        </thead>
+        <tbody id="weatherTable"></tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    let weatherData = [];
+    let temperatureChart = null;
+    async function loadWeatherData() {
+      const response = await fetch("weather.json");
+      weatherData = await response.json();
+      const regions = [...new Set(weatherData.map(item => item.regionName))];
+      const select = document.getElementById("regionSelect");
+      regions.forEach(region => {
+        const option = document.createElement("option");
+        option.value = region;
+        option.textContent = region;
+        select.appendChild(option);
+      });
+      select.addEventListener("change", () => {
+        showRegion(select.value);
+      });
+      if (regions.length > 0) {
+        showRegion(regions[0]);
+      }
+    }
+    function showRegion(region) {
+      const filtered = weatherData.filter(item => item.regionName === region);
+      document.getElementById("chartTitle").textContent = region + " 一週溫度趨勢";
+      updateTable(filtered);
+      updateChart(filtered);
+    }
+    function updateTable(data) {
+      const table = document.getElementById("weatherTable");
+      table.innerHTML = "";
+      data.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.regionName}</td>
+          <td>${item.dataDate}</td>
+          <td>${item.minT} °C</td>
+          <td>${item.maxT} °C</td>
+        `;
+        table.appendChild(row);
+      });
+    }
+    function updateChart(data) {
+      const labels = data.map(item => item.dataDate);
+      const minT = data.map(item => item.minT);
+      const maxT = data.map(item => item.maxT);
+      if (temperatureChart) {
+        temperatureChart.destroy();
+      }
+      const ctx = document.getElementById("temperatureChart");
+      temperatureChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            { label: "最低溫 (°C)", data: minT, tension: 0.25 },
+            { label: "最高溫 (°C)", data: maxT, tension: 0.25 }
+          ]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+    }
+    loadWeatherData();
+  </script>
+</body>
+</html>
