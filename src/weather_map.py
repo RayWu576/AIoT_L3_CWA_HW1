@@ -33,11 +33,12 @@ def create_weather_map(rows):
             warnings.append(f"{region} 溫度資料不完整，因此未顯示在地圖上。")
             continue
         average = (low + high) / 2
+        forecast_date = escape(str(row.get("dataDate", "N/A")))
         folium.Marker(
             location=REGION_COORDINATES[region],
             tooltip=escape(region),
             popup=folium.Popup(
-                f"<b>{escape(region)}</b><br>最低溫：{low:.1f} °C<br>"
+                f"<b>{escape(region)}</b><br>\u65e5\u671f:{forecast_date}<br>最低溫：{low:.1f} °C<br>"
                 f"最高溫：{high:.1f} °C<br>平均溫：{average:.1f} °C",
                 max_width=260),
             icon=folium.Icon(color=get_temperature_color(average), icon="info-sign")
