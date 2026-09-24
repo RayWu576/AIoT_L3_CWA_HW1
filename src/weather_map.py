@@ -34,14 +34,22 @@ def create_weather_map(rows):
             continue
         average = (low + high) / 2
         forecast_date = escape(str(row.get("dataDate", "N/A")))
-        folium.Marker(
+        marker_color = get_temperature_color(average)
+        folium.CircleMarker(
             location=REGION_COORDINATES[region],
+            radius=9,
+            color=marker_color,
+            weight=2,
+            fill=True,
+            fill_color=marker_color,
+            fill_opacity=0.9,
             tooltip=escape(region),
             popup=folium.Popup(
-                f"<b>{escape(region)}</b><br>\u65e5\u671f:{forecast_date}<br>最低溫：{low:.1f} °C<br>"
-                f"最高溫：{high:.1f} °C<br>平均溫：{average:.1f} °C",
+                f"<b>{escape(region)}</b><br>\u65e5\u671f:{forecast_date}<br>"
+                f"\u6700\u4f4e\u6eab:{low:.1f} \u00b0C<br>"
+                f"\u6700\u9ad8\u6eab:{high:.1f} \u00b0C<br>"
+                f"\u5e73\u5747\u6eab:{average:.1f} \u00b0C",
                 max_width=260),
-            icon=folium.Icon(color=get_temperature_color(average), icon="info-sign")
         ).add_to(weather_map)
         count += 1
     # Include offshore counties in the initial viewport, also on mobile.

@@ -1,5 +1,6 @@
 """Read the existing DB and generate static Vercel assets. No DB writes."""
 import json
+import re
 import sqlite3
 from contextlib import closing
 from datetime import date
@@ -28,7 +29,20 @@ def build_site(db_path=None, output=None):
     for day, daily_rows in sorted(grouped.items()):
         weather_map, warnings, count = create_weather_map(daily_rows)
         relative_path = f"maps/{day}.html"
-        weather_map.save(str(output / relative_path))
+        map_path = output / relative_path
+        weather_map.save(str(map_path))
+        html = map_path.read_text(encoding="utf-8")
+        # Folium's default template references several CDNs even though this map
+        # only needs Leaflet. Serve its core assets with the site for reliable demos.
+        html = re.sub(r"^\s*<script src=\"https?://[^\"]+\"></script>\s*$", "", html, flags=re.MULTILINE)
+        html = re.sub(r"^\s*<link rel=\"stylesheet\" href=\"https?://[^\"]+\"\s*/>\s*$", "", html, flags=re.MULTILINE)
+        local_assets = (
+            '<link rel="stylesheet" href="../static/vendor/leaflet.css"/>\n'
+            '<script src="../static/vendor/jquery.min.js"></script>\n'
+            '<script src="../static/vendor/leaflet.js"></script>\n'
+        )
+        html = html.replace("<head>", "<head>\n    " + local_assets, 1)
+        map_path.write_text(html, encoding="utf-8")
         manifest[day] = {"url": relative_path, "warnings": warnings, "count": count}
     for filename, data in [
         ("weather.json", rows),
