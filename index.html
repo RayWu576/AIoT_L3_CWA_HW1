@@ -1,136 +1,15 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Taiwan Weather Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <style>
-    body { font-family: Arial, "Microsoft JhengHei", sans-serif; background:#f5f7fa; margin:0; color:#233347; }
-    .container { width:90%; max-width:1000px; margin:40px auto; }
-    .card { background:white; padding:24px; margin-bottom:24px; border-radius:12px; box-shadow:0 2px 8px #0001; }
-    select,input { padding:10px; font-size:16px; max-width:100%; }
-    table { width:100%; border-collapse:collapse; }
-    th,td { padding:12px; text-align:center; border-bottom:1px solid #ddd; white-space:nowrap; }
-    th { background:#f0f2f5; }
-    .table-scroll { overflow-x:auto; }
-    .chart-container { height:400px; }
-    iframe { width:100%; height:600px; border:0; }
-    .legend { line-height:2; }
-    .note { color:#536374; }
-    @media(max-width:600px) { .container {width:94%;margin:20px auto} .card {padding:16px} h1 {font-size:26px} }
-  </style>
-</head>
-<body>
-  <main class="container">
-    <h1>Taiwan Weather Dashboard</h1>
-    <p>中央氣象署一週溫度預報</p>
-    <section class="card">
-      <h2>台灣氣溫地圖</h2>
-      <label for="mapDate">選擇日期</label>
-      <input type="date" id="mapDate" disabled>
-      <p>顯示所選日期的全臺縣市。點擊標記查看最低溫、最高溫與平均溫。</p>
-      <p class="legend">🔵 &lt; 20°C　🟢 20 ≤ 溫度 &lt; 25°C　🟠 25 ≤ 溫度 ≤ 30°C　🔴 &gt; 30°C</p>
-      <p id="mapStatus" role="status">地圖載入中…</p>
-      <iframe id="weatherMap" title="台灣各縣市氣溫地圖" hidden></iframe>
-      <p class="note">平均溫為最低溫與最高溫的算術平均。此頁為資料快照，更新資料後需重新部署。</p>
-    </section>
-    <section class="card">
-      <h2><label for="regionSelect">選擇地區</label></h2>
-      <select id="regionSelect" disabled></select>
-    </section>
-    <section class="card">
-      <h2 id="chartTitle">一週溫度趨勢</h2>
-      <div class="chart-container"><canvas id="temperatureChart"></canvas></div>
-    </section>
-    <section class="card">
-      <h2>詳細資料</h2>
-      <div class="table-scroll"><table>
-        <thead><tr><th>地區</th><th>日期</th><th>最低溫</th><th>最高溫</th></tr></thead>
-        <tbody id="weatherTable"></tbody>
-      </table></div>
-    </section>
-  </main>
-  <script>
-    let weatherData = [];
-    let temperatureChart = null;
-    async function loadWeatherData() {
-      try {
-        const response = await fetch("weather.json");
-        if (!response.ok) throw new Error();
-        weatherData = await response.json();
-        const regions = [...new Set(weatherData.map(item => item.regionName))];
-        const select = document.getElementById("regionSelect");
-        regions.forEach(region => select.add(new Option(region, region)));
-        if (!regions.length) {
-          document.getElementById("chartTitle").textContent = "目前資料庫中沒有天氣資料。";
-          return;
-        }
-        select.disabled = false;
-        select.addEventListener("change", () => showRegion(select.value));
-        showRegion(regions[0]);
-      } catch {
-        document.getElementById("chartTitle").textContent = "天氣資料載入失敗，請稍後重新整理。";
-      }
-    }
-    function showRegion(region) {
-      const data = weatherData.filter(item => item.regionName === region);
-      document.getElementById("chartTitle").textContent = region + " 一週溫度趨勢";
-      const table = document.getElementById("weatherTable");
-      table.replaceChildren();
-      data.forEach(item => {
-        const row = document.createElement("tr");
-        [item.regionName, item.dataDate, item.minT + " °C", item.maxT + " °C"].forEach(value => {
-          const cell = document.createElement("td");
-          cell.textContent = value;
-          row.appendChild(cell);
-        });
-        table.appendChild(row);
-      });
-      if (typeof Chart === "undefined") {
-        document.getElementById("chartTitle").textContent += "（圖表載入失敗，請參考明細表）";
-        return;
-      }
-      if (temperatureChart) temperatureChart.destroy();
-      temperatureChart = new Chart(document.getElementById("temperatureChart"), {
-        type:"line",
-        data: {
-          labels:data.map(item => item.dataDate),
-          datasets:[
-            {label:"最低溫 (°C)",data:data.map(item => item.minT),borderColor:"#1976d2",tension:0.25},
-            {label:"最高溫 (°C)",data:data.map(item => item.maxT),borderColor:"#d32f2f",tension:0.25}
-          ]
-        },
-        options:{responsive:true,maintainAspectRatio:false}
-      });
-    }
-    async function loadMaps() {
-      const status = document.getElementById("mapStatus");
-      const picker = document.getElementById("mapDate");
-      const frame = document.getElementById("weatherMap");
-      try {
-        const response = await fetch("maps.json");
-        if (!response.ok) throw new Error("地圖資料載入失敗，請稍後重新整理。");
-        const maps = await response.json();
-        const dates = Object.keys(maps).sort();
-        if (!dates.length) { status.textContent = "目前資料庫中沒有天氣資料。"; return; }
-        picker.min = dates[0]; picker.max = dates[dates.length - 1];
-        picker.value = dates[0]; picker.disabled = false;
-        function showMap() {
-          const entry = maps[picker.value];
-          frame.hidden = true;
-          frame.removeAttribute("src");
-          if (!entry) { status.textContent = "這個日期沒有天氣資料。"; return; }
-          status.textContent = picker.value + " · 顯示 " + entry.count + " 個縣市。 " + entry.warnings.join(" ");
-          frame.title = picker.value + " 台灣各縣市氣溫地圖";
-          frame.src = entry.url; frame.hidden = false;
-        }
-        picker.addEventListener("change", showMap);
-        showMap();
-      } catch(error) { status.textContent = error.message; }
-    }
-    loadWeatherData();
-    loadMaps();
-  </script>
-</body>
-</html>
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d17"><meta name="description" content="中央氣象署台灣縣市天氣預報。">
+<title>Taiwan Weather — Forecast Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:,"><link rel="stylesheet" href="static/css/dashboard.css"><script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script><script defer src="static/js/dashboard.js"></script></head><body>
+<div class="ambient blue" aria-hidden="true"></div><div class="ambient purple" aria-hidden="true"></div>
+<header class="topbar"><a class="brand" href="#"><span class="logo" aria-hidden="true">◌</span><span><strong>Taiwan Weather</strong><small>FORECAST DASHBOARD</small></span></a><nav aria-label="Main navigation"><a class="active" href="#overview">Overview</a><a href="#temperature">Trends</a><a href="#map-section">Map</a></nav><button class="button refresh" id="refreshButton" type="button"><svg class="refresh-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4.6 10a7.5 7.5 0 0 1 13-3L20 12M4 17v-5h5m10.4-2a7.5 7.5 0 0 1-13 3L4 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="refreshLabel">Refresh</span></button></header>
+<main class="shell"><div class="error" id="errorBanner" role="alert" hidden><span><b>Unable to load forecast data</b><small>Check your connection and try again.</small></span><button class="button" id="retryButton" type="button">Retry</button></div>
+<section class="hero reveal" id="overview"><div class="hero-copy"><p class="eyebrow"><i></i>CENTRAL WEATHER ADMINISTRATION <span>/</span> TAIWAN</p><div class="location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><label class="sr-only" for="regionSelect">Select location</label><select id="regionSelect" disabled aria-label="Select location"><option>Loading forecasts…</option></select><span>⌄</span></div><h1 class="hero-temp"><span id="heroLow">--°</span><i>—</i><span id="heroHigh">--°</span></h1><p class="hero-caption">Forecast temperature range</p><div class="hero-date"><span>◷</span><span id="heroDate">Select a forecast date</span></div><a class="button primary" href="#map-section">Explore map <span>↗</span></a></div>
+<div class="hero-art" aria-hidden="true"><div class="halo"></div><div class="sun"></div><div class="weather-orbit"></div><span class="art-date" id="artDate">—</span></div><div class="hero-foot">Forecast range from CWA data <i></i> <span>Published forecast snapshot</span></div></section>
+<section class="section reveal"><div class="section-head"><div><p class="eyebrow">UPCOMING DAYS</p><h2>Forecast</h2></div><span class="hint">Select a day to explore</span></div><div class="forecast-rail" id="forecastRail" aria-label="Forecast dates"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div></section>
+<section class="section reveal"><div class="section-head"><div><p class="eyebrow">AT A GLANCE</p><h2>Temperature overview</h2></div></div><div class="stats"><article class="stat"><div><i class="warm">↗</i><small>HIGH</small></div><strong id="statHigh">—</strong><span>Maximum temperature</span></article><article class="stat"><div><i class="cool">↘</i><small>LOW</small></div><strong id="statLow">—</strong><span>Minimum temperature</span></article><article class="stat"><div><i class="violet">⌁</i><small>RANGE</small></div><strong id="statRange">—</strong><span>Temperature spread</span></article><article class="stat"><div><i class="blue">▦</i><small>OUTLOOK</small></div><strong id="statDays">—</strong><span>Available forecast days</span></article></div></section>
+<section class="analysis reveal" id="temperature"><article class="panel chart-panel"><div class="panel-head"><div><p class="eyebrow">TEMPERATURE</p><h2>Temperature trend</h2><p class="subtitle">Daily high and low for <span id="chartRegion">your location</span></p></div><span class="period">NEXT <b id="chartDays">—</b> DAYS</span></div><div class="legend"><span><i class="high-dot"></i>High</span><span><i class="low-dot"></i>Low</span></div><div class="chart-wrap"><canvas id="temperatureChart" aria-label="Daily high and low temperature forecast"></canvas><p id="chartFallback" hidden>Chart library unavailable. Forecast cards still show the temperature data.</p></div></article><aside class="panel detail"><p class="eyebrow">SELECTED FORECAST</p><h2 id="detailTitle">Your forecast</h2><p class="subtitle" id="detailDate">Choose a date</p><div class="rule"></div><div><span>Expected high</span><b id="detailHigh">—</b></div><div><span>Expected low</span><b id="detailLow">—</b></div><div><span>Daily range</span><b id="detailRange">—</b></div><p class="detail-note">Temperature forecast supplied by the Central Weather Administration.</p></aside></section>
+<section class="section map-section reveal" id="map-section"><div class="section-head map-head"><div><p class="eyebrow">REGIONAL FORECAST</p><h2>Explore Taiwan</h2><p class="subtitle">Temperature outlook across 22 counties and cities</p></div><span class="map-date"><i></i><span id="mapDateLabel">—</span></span></div><div class="panel map-frame"><div class="map-loading" id="mapLoading"><i></i>Preparing regional map</div><iframe id="weatherMap" title="Taiwan county and city temperature forecast map" hidden loading="lazy"></iframe></div><div class="map-legend"><span><i class="high-dot"></i>Warmer outlook</span><span><i class="low-dot"></i>Cooler outlook</span><span>Click a marker for daily details</span></div></section>
+<footer><a class="brand" href="#"><span class="logo">◌</span><b>Taiwan Weather</b></a><p>Weather data provided by <a href="https://opendata.cwa.gov.tw/" target="_blank" rel="noreferrer">Central Weather Administration</a></p><span>Forecast snapshot · Taiwan</span></footer></main></body></html>

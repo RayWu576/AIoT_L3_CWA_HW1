@@ -4,8 +4,9 @@ import sqlite3
 from contextlib import closing
 from datetime import date
 from pathlib import Path
-from shutil import copyfile
+from shutil import copyfile, copytree
 from src.weather_map import create_weather_map
+from src.locations import REGION_COORDINATES
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -29,9 +30,14 @@ def build_site(db_path=None, output=None):
         relative_path = f"maps/{day}.html"
         weather_map.save(str(output / relative_path))
         manifest[day] = {"url": relative_path, "warnings": warnings, "count": count}
-    for filename, data in [("weather.json", rows), ("maps.json", manifest)]:
+    for filename, data in [
+        ("weather.json", rows),
+        ("maps.json", manifest),
+        ("locations.json", REGION_COORDINATES),
+    ]:
         (output / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     copyfile(BASE_DIR / "index.html", output / "index.html")
+    copytree(BASE_DIR / "static", output / "static", dirs_exist_ok=True)
     print(f"Built {len(rows)} records / {len(manifest)} dates into {output}")
     return manifest
 
