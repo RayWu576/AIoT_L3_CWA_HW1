@@ -16,3 +16,7 @@ footer{min-height:68px;display:flex;align-items:center;justify-content:space-bet
 
 .topbar nav a{position:relative;padding:8px 10px;border-radius:9px}.topbar nav a.active{color:#edf5ff;background:rgba(122,177,229,.11);box-shadow:inset 0 0 0 1px rgba(156,196,236,.12)}.topbar nav a.active:after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;border-radius:2px;background:#8fc5d2;box-shadow:0 0 8px rgba(143,197,210,.55)}
 @media(max-width:600px){.topbar nav a{padding:7px 6px}}
+
+/* Improve readability of forecast card details. */
+.hour-card{min-height:174px;padding:16px 12px;gap:10px}.hour-time{font-size:13px}.hour-card .weather-symbol{font-size:25px}.hour-temp{font-size:22px}.hour-rain{font-size:13px;line-height:1.45}.hour-extra{font-size:11px;line-height:1.5}.forecast-card{min-height:140px;padding:14px}.forecast-day{font-size:12px}.forecast-card .weather-symbol{font-size:23px;margin:7px 0}.forecast-rain{font-size:12px;margin-bottom:6px}.forecast-range{font-size:14px}
+@media(max-width:600px){.hour-card{min-height:164px;padding:13px 8px;gap:9px}.hour-time{font-size:12px}.hour-card .weather-symbol{font-size:23px}.hour-temp{font-size:20px}.hour-rain{font-size:12px}.hour-extra{font-size:10px}.forecast-card{min-height:137px;padding:12px}.forecast-day{font-size:11px}.forecast-card .weather-symbol{font-size:21px;margin:6px 0}.forecast-rain{font-size:11px}.forecast-range{font-size:13px}}
