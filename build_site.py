@@ -3,7 +3,7 @@ import json
 import re
 import sqlite3
 from contextlib import closing
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from shutil import copyfile, copytree
 from src.weather_map import create_weather_map
@@ -17,9 +17,61 @@ def build_site(db_path=None, output=None):
     output = Path(output or BASE_DIR / "public")
     with closing(sqlite3.connect(db_path.as_uri() + "?mode=ro", uri=True)) as conn:
         conn.row_factory = sqlite3.Row
-        rows = [dict(row) for row in conn.execute(
-            "SELECT regionName, dataDate, minT, maxT FROM TemperatureForecasts "
-            "ORDER BY regionName, dataDate")]
+        tables = {row[0] for row in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'")}
+        snapshot = None
+        if {"DailyForecasts", "HourlyForecasts", "WeatherRefreshes"} <= tables:
+            meta = conn.execute(
+                "SELECT updatedAt, hourlyDataset, dailyDataset, "
+                "hourlyIntervalHours, dailyIntervalHours "
+                "FROM WeatherRefreshes WHERE id=1").fetchone()
+            if meta:
+                updated_at = meta["updatedAt"]
+                regions = {}
+                daily_rows = [dict(row) for row in conn.execute(
+                    "SELECT regionName, forecastDate, minT, maxT, weather, weatherCode, "
+                    "weatherDescription, pop, apparentTemperature, humidity, windDirection, "
+                    "windSpeed, uvIndex, uvExposureLevel FROM DailyForecasts "
+                    "WHERE updatedAt=? ORDER BY regionName, forecastDate", (updated_at,))]
+                hourly_rows = [dict(row) for row in conn.execute(
+                    "SELECT regionName, forecastTime, temperature, apparentTemperature, "
+                    "humidity, pop, weather, weatherCode, weatherDescription, windDirection, "
+                    "windSpeed FROM HourlyForecasts WHERE updatedAt=? "
+                    "ORDER BY regionName, forecastTime", (updated_at,))]
+                for row in daily_rows:
+                    region = row.pop("regionName")
+                    forecast_date = row.pop("forecastDate")
+                    row["date"] = forecast_date
+                    row["minTemperature"] = row.pop("minT")
+                    row["maxTemperature"] = row.pop("maxT")
+                    regions.setdefault(region, {"current": None, "hourly": [], "daily": []})["daily"].append(row)
+                for row in hourly_rows:
+                    region = row.pop("regionName")
+                    forecast_time = row.pop("forecastTime")
+                    parsed_time = datetime.fromisoformat(forecast_time)
+                    row["datetime"] = forecast_time
+                    row["time"] = parsed_time.strftime("%H:%M")
+                    regions.setdefault(region, {"current": None, "hourly": [], "daily": []})["hourly"].append(row)
+                snapshot = {
+                    "updatedAt": updated_at,
+                    "source": {
+                        "hourlyDataset": meta["hourlyDataset"],
+                        "dailyDataset": meta["dailyDataset"],
+                        "hourlyIntervalHours": meta["hourlyIntervalHours"],
+                        "dailyIntervalHours": meta["dailyIntervalHours"],
+                    },
+                    "regions": regions,
+                }
+                rows = [{
+                    "regionName": region,
+                    "dataDate": day["date"],
+                    "minT": day["minTemperature"],
+                    "maxT": day["maxTemperature"],
+                } for region, forecast in regions.items() for day in forecast["daily"]]
+        if snapshot is None:
+            rows = [dict(row) for row in conn.execute(
+                "SELECT regionName, dataDate, minT, maxT FROM TemperatureForecasts "
+                "ORDER BY regionName, dataDate")]
     grouped = {}
     for row in rows:
         row["dataDate"] = date.fromisoformat(str(row["dataDate"])[:10]).isoformat()
@@ -44,11 +96,14 @@ def build_site(db_path=None, output=None):
         html = html.replace("<head>", "<head>\n    " + local_assets, 1)
         map_path.write_text(html, encoding="utf-8")
         manifest[day] = {"url": relative_path, "warnings": warnings, "count": count}
-    for filename, data in [
+    exports = [
         ("weather.json", rows),
         ("maps.json", manifest),
         ("locations.json", REGION_COORDINATES),
-    ]:
+    ]
+    if snapshot is not None:
+        exports.append(("weather-data.json", snapshot))
+    for filename, data in exports:
         (output / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     copyfile(BASE_DIR / "index.html", output / "index.html")
     copytree(BASE_DIR / "static", output / "static", dirs_exist_ok=True)

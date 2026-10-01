@@ -1,5 +1,10 @@
 {
   "framework": null,
   "buildCommand": "",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "functions": {
+    "api/weather.py": {
+      "includeFiles": "public/weather-data.json"
+    }
+  }
 }

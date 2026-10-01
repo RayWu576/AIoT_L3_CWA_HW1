@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/vendor/leaflet.css"/>
+<script src="../static/vendor/jquery.min.js"></script>
+<script src="../static/vendor/leaflet.js"></script>
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+
+
+
+
+
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_83e279110f07e34b3848fed339f17bf8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_83e279110f07e34b3848fed339f17bf8" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_83e279110f07e34b3848fed339f17bf8 = L.map(
+                "map_83e279110f07e34b3848fed339f17bf8",
+                {
+                    center: [23.7, 121.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e7be3617f0992c0649211dbbec94621a = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e7be3617f0992c0649211dbbec94621a.addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+            var circle_marker_fa485764cf3b7c14cc5eb089566ca4b4 = L.circleMarker(
+                [23.9609, 120.9719],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_acfd30f5aabc161ed4f5bbbbbb96a93e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b866bb08767cd9b1885a598fb36cbb66 = $(`<div id="html_b866bb08767cd9b1885a598fb36cbb66" style="width: 100.0%; height: 100.0%;"><b>南投縣</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:33.0 °C<br>平均溫:29.0 °C</div>`)[0];
+                popup_acfd30f5aabc161ed4f5bbbbbb96a93e.setContent(html_b866bb08767cd9b1885a598fb36cbb66);
+            
+        
+
+        circle_marker_fa485764cf3b7c14cc5eb089566ca4b4.bindPopup(popup_acfd30f5aabc161ed4f5bbbbbb96a93e)
+        ;
+
+        
+    
+    
+            circle_marker_fa485764cf3b7c14cc5eb089566ca4b4.bindTooltip(
+                `<div>
+                     南投縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a3053cabca65ff5e13f387acd50222a0 = L.circleMarker(
+                [23.4801, 120.4491],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_dab9f8b58199ef3811bfcc63c9d364c9 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3204562969fa13687bff7e20365d846f = $(`<div id="html_3204562969fa13687bff7e20365d846f" style="width: 100.0%; height: 100.0%;"><b>嘉義市</b><br>日期:2026-10-02<br>最低溫:24.0 °C<br>最高溫:33.0 °C<br>平均溫:28.5 °C</div>`)[0];
+                popup_dab9f8b58199ef3811bfcc63c9d364c9.setContent(html_3204562969fa13687bff7e20365d846f);
+            
+        
+
+        circle_marker_a3053cabca65ff5e13f387acd50222a0.bindPopup(popup_dab9f8b58199ef3811bfcc63c9d364c9)
+        ;
+
+        
+    
+    
+            circle_marker_a3053cabca65ff5e13f387acd50222a0.bindTooltip(
+                `<div>
+                     嘉義市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3574e9936497e3c2e4a145da3dff2dac = L.circleMarker(
+                [23.4518, 120.2555],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_3f85fbfa777ba4715e005edc48e15554 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4bfe77f1ca312186672f07e3a7aebb5e = $(`<div id="html_4bfe77f1ca312186672f07e3a7aebb5e" style="width: 100.0%; height: 100.0%;"><b>嘉義縣</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:33.0 °C<br>平均溫:29.0 °C</div>`)[0];
+                popup_3f85fbfa777ba4715e005edc48e15554.setContent(html_4bfe77f1ca312186672f07e3a7aebb5e);
+            
+        
+
+        circle_marker_3574e9936497e3c2e4a145da3dff2dac.bindPopup(popup_3f85fbfa777ba4715e005edc48e15554)
+        ;
+
+        
+    
+    
+            circle_marker_3574e9936497e3c2e4a145da3dff2dac.bindTooltip(
+                `<div>
+                     嘉義縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_839d9b3eb6932667b4d71da1b809cf41 = L.circleMarker(
+                [25.1276, 121.7392],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_65df92c0d07d32e785a5a9a61c6a443c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_39053f2d2a4ca3a8ce62406a3faab2a8 = $(`<div id="html_39053f2d2a4ca3a8ce62406a3faab2a8" style="width: 100.0%; height: 100.0%;"><b>基隆市</b><br>日期:2026-10-02<br>最低溫:24.0 °C<br>最高溫:28.0 °C<br>平均溫:26.0 °C</div>`)[0];
+                popup_65df92c0d07d32e785a5a9a61c6a443c.setContent(html_39053f2d2a4ca3a8ce62406a3faab2a8);
+            
+        
+
+        circle_marker_839d9b3eb6932667b4d71da1b809cf41.bindPopup(popup_65df92c0d07d32e785a5a9a61c6a443c)
+        ;
+
+        
+    
+    
+            circle_marker_839d9b3eb6932667b4d71da1b809cf41.bindTooltip(
+                `<div>
+                     基隆市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1f740ec32ef3fe0384246c1e787b161b = L.circleMarker(
+                [24.7021, 121.7378],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_20112c7ee213937bdbca8e539b0fabaa = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_33eda9a66504622dbf87996627e5fca6 = $(`<div id="html_33eda9a66504622dbf87996627e5fca6" style="width: 100.0%; height: 100.0%;"><b>宜蘭縣</b><br>日期:2026-10-02<br>最低溫:24.0 °C<br>最高溫:29.0 °C<br>平均溫:26.5 °C</div>`)[0];
+                popup_20112c7ee213937bdbca8e539b0fabaa.setContent(html_33eda9a66504622dbf87996627e5fca6);
+            
+        
+
+        circle_marker_1f740ec32ef3fe0384246c1e787b161b.bindPopup(popup_20112c7ee213937bdbca8e539b0fabaa)
+        ;
+
+        
+    
+    
+            circle_marker_1f740ec32ef3fe0384246c1e787b161b.bindTooltip(
+                `<div>
+                     宜蘭縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_53f711524d7cb1f80db63b3de892d9ac = L.circleMarker(
+                [22.5519, 120.5487],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_9b8d940a90635b1e52f0155071f88ac2 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a907a91001dec5f3339bf6694596fbc8 = $(`<div id="html_a907a91001dec5f3339bf6694596fbc8" style="width: 100.0%; height: 100.0%;"><b>屏東縣</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:33.0 °C<br>平均溫:29.0 °C</div>`)[0];
+                popup_9b8d940a90635b1e52f0155071f88ac2.setContent(html_a907a91001dec5f3339bf6694596fbc8);
+            
+        
+
+        circle_marker_53f711524d7cb1f80db63b3de892d9ac.bindPopup(popup_9b8d940a90635b1e52f0155071f88ac2)
+        ;
+
+        
+    
+    
+            circle_marker_53f711524d7cb1f80db63b3de892d9ac.bindTooltip(
+                `<div>
+                     屏東縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d057f63b7429e0b16c319efed357630f = L.circleMarker(
+                [24.0756, 120.544],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_6e1d2aff04a08b3935c9a1e884e70e6f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_e1b2e35cb4daa00d734292dbf10fd12c = $(`<div id="html_e1b2e35cb4daa00d734292dbf10fd12c" style="width: 100.0%; height: 100.0%;"><b>彰化縣</b><br>日期:2026-10-02<br>最低溫:26.0 °C<br>最高溫:33.0 °C<br>平均溫:29.5 °C</div>`)[0];
+                popup_6e1d2aff04a08b3935c9a1e884e70e6f.setContent(html_e1b2e35cb4daa00d734292dbf10fd12c);
+            
+        
+
+        circle_marker_d057f63b7429e0b16c319efed357630f.bindPopup(popup_6e1d2aff04a08b3935c9a1e884e70e6f)
+        ;
+
+        
+    
+    
+            circle_marker_d057f63b7429e0b16c319efed357630f.bindTooltip(
+                `<div>
+                     彰化縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81dfbe33c847e9b37f104c2f3c709054 = L.circleMarker(
+                [25.0169, 121.4628],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_2ec8c8e3782288978b1c711d82c7e093 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3cbe0a7910518f0a2ecff29d1fc29844 = $(`<div id="html_3cbe0a7910518f0a2ecff29d1fc29844" style="width: 100.0%; height: 100.0%;"><b>新北市</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:30.0 °C<br>平均溫:27.5 °C</div>`)[0];
+                popup_2ec8c8e3782288978b1c711d82c7e093.setContent(html_3cbe0a7910518f0a2ecff29d1fc29844);
+            
+        
+
+        circle_marker_81dfbe33c847e9b37f104c2f3c709054.bindPopup(popup_2ec8c8e3782288978b1c711d82c7e093)
+        ;
+
+        
+    
+    
+            circle_marker_81dfbe33c847e9b37f104c2f3c709054.bindTooltip(
+                `<div>
+                     新北市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3851f662f4f825602f06fc8076112135 = L.circleMarker(
+                [24.8138, 120.9675],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_f2e303301b4ab4fd241ba65b598f3f1c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7783fe281dc3a70f649cecb9ae52dfbe = $(`<div id="html_7783fe281dc3a70f649cecb9ae52dfbe" style="width: 100.0%; height: 100.0%;"><b>新竹市</b><br>日期:2026-10-02<br>最低溫:24.0 °C<br>最高溫:32.0 °C<br>平均溫:28.0 °C</div>`)[0];
+                popup_f2e303301b4ab4fd241ba65b598f3f1c.setContent(html_7783fe281dc3a70f649cecb9ae52dfbe);
+            
+        
+
+        circle_marker_3851f662f4f825602f06fc8076112135.bindPopup(popup_f2e303301b4ab4fd241ba65b598f3f1c)
+        ;
+
+        
+    
+    
+            circle_marker_3851f662f4f825602f06fc8076112135.bindTooltip(
+                `<div>
+                     新竹市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_21ce0ae0bf79331570efc54c0a6e26f3 = L.circleMarker(
+                [24.8387, 121.0177],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_f7011a2fd520c489c79a4b874a2d4a7d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1a3089e0f277456378c542a05e6a006e = $(`<div id="html_1a3089e0f277456378c542a05e6a006e" style="width: 100.0%; height: 100.0%;"><b>新竹縣</b><br>日期:2026-10-02<br>最低溫:24.0 °C<br>最高溫:32.0 °C<br>平均溫:28.0 °C</div>`)[0];
+                popup_f7011a2fd520c489c79a4b874a2d4a7d.setContent(html_1a3089e0f277456378c542a05e6a006e);
+            
+        
+
+        circle_marker_21ce0ae0bf79331570efc54c0a6e26f3.bindPopup(popup_f7011a2fd520c489c79a4b874a2d4a7d)
+        ;
+
+        
+    
+    
+            circle_marker_21ce0ae0bf79331570efc54c0a6e26f3.bindTooltip(
+                `<div>
+                     新竹縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d8a3ac166a793f67cb54c9e408aa08a6 = L.circleMarker(
+                [24.9937, 121.301],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_a4410674c0050c6f5ce5f885c584de2d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c9afc73ddf202b9da1d3a7897de00a68 = $(`<div id="html_c9afc73ddf202b9da1d3a7897de00a68" style="width: 100.0%; height: 100.0%;"><b>桃園市</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:31.0 °C<br>平均溫:28.0 °C</div>`)[0];
+                popup_a4410674c0050c6f5ce5f885c584de2d.setContent(html_c9afc73ddf202b9da1d3a7897de00a68);
+            
+        
+
+        circle_marker_d8a3ac166a793f67cb54c9e408aa08a6.bindPopup(popup_a4410674c0050c6f5ce5f885c584de2d)
+        ;
+
+        
+    
+    
+            circle_marker_d8a3ac166a793f67cb54c9e408aa08a6.bindTooltip(
+                `<div>
+                     桃園市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_edba33875a9562861889d7cfb6ba1fe4 = L.circleMarker(
+                [23.5712, 119.5793],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_1d2d3e796e6b12f200b03109976c95ba = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4beb5786ce589e1ee9afe865b4e5408b = $(`<div id="html_4beb5786ce589e1ee9afe865b4e5408b" style="width: 100.0%; height: 100.0%;"><b>澎湖縣</b><br>日期:2026-10-02<br>最低溫:26.0 °C<br>最高溫:31.0 °C<br>平均溫:28.5 °C</div>`)[0];
+                popup_1d2d3e796e6b12f200b03109976c95ba.setContent(html_4beb5786ce589e1ee9afe865b4e5408b);
+            
+        
+
+        circle_marker_edba33875a9562861889d7cfb6ba1fe4.bindPopup(popup_1d2d3e796e6b12f200b03109976c95ba)
+        ;
+
+        
+    
+    
+            circle_marker_edba33875a9562861889d7cfb6ba1fe4.bindTooltip(
+                `<div>
+                     澎湖縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c8cee9d040397b0094f0a1016debb224 = L.circleMarker(
+                [24.1477, 120.6736],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_f5e2bcb6901c2cf9700023df8a89b5ba = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_878e98afbda96f9396e17ea181cdde45 = $(`<div id="html_878e98afbda96f9396e17ea181cdde45" style="width: 100.0%; height: 100.0%;"><b>臺中市</b><br>日期:2026-10-02<br>最低溫:26.0 °C<br>最高溫:33.0 °C<br>平均溫:29.5 °C</div>`)[0];
+                popup_f5e2bcb6901c2cf9700023df8a89b5ba.setContent(html_878e98afbda96f9396e17ea181cdde45);
+            
+        
+
+        circle_marker_c8cee9d040397b0094f0a1016debb224.bindPopup(popup_f5e2bcb6901c2cf9700023df8a89b5ba)
+        ;
+
+        
+    
+    
+            circle_marker_c8cee9d040397b0094f0a1016debb224.bindTooltip(
+                `<div>
+                     臺中市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7725346db9bc515020180cdc55e4a54c = L.circleMarker(
+                [25.033, 121.5654],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_b9425c0e2e359b60a09c63728b64fa59 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_02c1ef691176b52e34658757856d018b = $(`<div id="html_02c1ef691176b52e34658757856d018b" style="width: 100.0%; height: 100.0%;"><b>臺北市</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:30.0 °C<br>平均溫:27.5 °C</div>`)[0];
+                popup_b9425c0e2e359b60a09c63728b64fa59.setContent(html_02c1ef691176b52e34658757856d018b);
+            
+        
+
+        circle_marker_7725346db9bc515020180cdc55e4a54c.bindPopup(popup_b9425c0e2e359b60a09c63728b64fa59)
+        ;
+
+        
+    
+    
+            circle_marker_7725346db9bc515020180cdc55e4a54c.bindTooltip(
+                `<div>
+                     臺北市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ddc0d5d1b383c00c3158a8982ffdac89 = L.circleMarker(
+                [22.9999, 120.2269],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_66c4c7007d2f5c23d5ac239f53be1632 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_39f235fa4ba1a46dce75a900454c3824 = $(`<div id="html_39f235fa4ba1a46dce75a900454c3824" style="width: 100.0%; height: 100.0%;"><b>臺南市</b><br>日期:2026-10-02<br>最低溫:27.0 °C<br>最高溫:32.0 °C<br>平均溫:29.5 °C</div>`)[0];
+                popup_66c4c7007d2f5c23d5ac239f53be1632.setContent(html_39f235fa4ba1a46dce75a900454c3824);
+            
+        
+
+        circle_marker_ddc0d5d1b383c00c3158a8982ffdac89.bindPopup(popup_66c4c7007d2f5c23d5ac239f53be1632)
+        ;
+
+        
+    
+    
+            circle_marker_ddc0d5d1b383c00c3158a8982ffdac89.bindTooltip(
+                `<div>
+                     臺南市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_75c1f80605330ab979761987e95b3d5f = L.circleMarker(
+                [22.7554, 121.15],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_5fed6b56a3eb1489675006d5d882ce2d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_60cbd4b9466680b6bd4350c373dd2fea = $(`<div id="html_60cbd4b9466680b6bd4350c373dd2fea" style="width: 100.0%; height: 100.0%;"><b>臺東縣</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:31.0 °C<br>平均溫:28.0 °C</div>`)[0];
+                popup_5fed6b56a3eb1489675006d5d882ce2d.setContent(html_60cbd4b9466680b6bd4350c373dd2fea);
+            
+        
+
+        circle_marker_75c1f80605330ab979761987e95b3d5f.bindPopup(popup_5fed6b56a3eb1489675006d5d882ce2d)
+        ;
+
+        
+    
+    
+            circle_marker_75c1f80605330ab979761987e95b3d5f.bindTooltip(
+                `<div>
+                     臺東縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ec554b82e67fe0e1d05318352e4a9462 = L.circleMarker(
+                [23.9911, 121.6112],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_fa325e12de2e031de3c0143e1aef7094 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5ba94601cbc34a12124a54e2b019e3d8 = $(`<div id="html_5ba94601cbc34a12124a54e2b019e3d8" style="width: 100.0%; height: 100.0%;"><b>花蓮縣</b><br>日期:2026-10-02<br>最低溫:24.0 °C<br>最高溫:30.0 °C<br>平均溫:27.0 °C</div>`)[0];
+                popup_fa325e12de2e031de3c0143e1aef7094.setContent(html_5ba94601cbc34a12124a54e2b019e3d8);
+            
+        
+
+        circle_marker_ec554b82e67fe0e1d05318352e4a9462.bindPopup(popup_fa325e12de2e031de3c0143e1aef7094)
+        ;
+
+        
+    
+    
+            circle_marker_ec554b82e67fe0e1d05318352e4a9462.bindTooltip(
+                `<div>
+                     花蓮縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7377f428b960ad809b1ed983505fd79d = L.circleMarker(
+                [24.5602, 120.8214],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_57cb76f250e8a8b2871883b51bf1ed62 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6fa18ff5e93321fad0d48eeeabd325f1 = $(`<div id="html_6fa18ff5e93321fad0d48eeeabd325f1" style="width: 100.0%; height: 100.0%;"><b>苗栗縣</b><br>日期:2026-10-02<br>最低溫:23.0 °C<br>最高溫:33.0 °C<br>平均溫:28.0 °C</div>`)[0];
+                popup_57cb76f250e8a8b2871883b51bf1ed62.setContent(html_6fa18ff5e93321fad0d48eeeabd325f1);
+            
+        
+
+        circle_marker_7377f428b960ad809b1ed983505fd79d.bindPopup(popup_57cb76f250e8a8b2871883b51bf1ed62)
+        ;
+
+        
+    
+    
+            circle_marker_7377f428b960ad809b1ed983505fd79d.bindTooltip(
+                `<div>
+                     苗栗縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_93f061e5bf19e5e7f9388edb01b4b61e = L.circleMarker(
+                [26.1605, 119.9517],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_0c3de4846739443f84daef6232d5c575 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c045d7be21d704363b7c22f207241829 = $(`<div id="html_c045d7be21d704363b7c22f207241829" style="width: 100.0%; height: 100.0%;"><b>連江縣</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:29.0 °C<br>平均溫:27.0 °C</div>`)[0];
+                popup_0c3de4846739443f84daef6232d5c575.setContent(html_c045d7be21d704363b7c22f207241829);
+            
+        
+
+        circle_marker_93f061e5bf19e5e7f9388edb01b4b61e.bindPopup(popup_0c3de4846739443f84daef6232d5c575)
+        ;
+
+        
+    
+    
+            circle_marker_93f061e5bf19e5e7f9388edb01b4b61e.bindTooltip(
+                `<div>
+                     連江縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db84d14c27a27d8b392842642aad7630 = L.circleMarker(
+                [24.4494, 118.3767],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_0ada90f46d6be16e5faef34b8875ae66 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ca7bb2aec941970ae57ad88fad373bc1 = $(`<div id="html_ca7bb2aec941970ae57ad88fad373bc1" style="width: 100.0%; height: 100.0%;"><b>金門縣</b><br>日期:2026-10-02<br>最低溫:26.0 °C<br>最高溫:32.0 °C<br>平均溫:29.0 °C</div>`)[0];
+                popup_0ada90f46d6be16e5faef34b8875ae66.setContent(html_ca7bb2aec941970ae57ad88fad373bc1);
+            
+        
+
+        circle_marker_db84d14c27a27d8b392842642aad7630.bindPopup(popup_0ada90f46d6be16e5faef34b8875ae66)
+        ;
+
+        
+    
+    
+            circle_marker_db84d14c27a27d8b392842642aad7630.bindTooltip(
+                `<div>
+                     金門縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_daf1fb42e9d0fc74dc589c0f254c1168 = L.circleMarker(
+                [23.7092, 120.4313],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_6f7b6c753f3aad8d938e4e8bbbe050de = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_fd3b79d4e764fda35a427f922964f461 = $(`<div id="html_fd3b79d4e764fda35a427f922964f461" style="width: 100.0%; height: 100.0%;"><b>雲林縣</b><br>日期:2026-10-02<br>最低溫:25.0 °C<br>最高溫:33.0 °C<br>平均溫:29.0 °C</div>`)[0];
+                popup_6f7b6c753f3aad8d938e4e8bbbe050de.setContent(html_fd3b79d4e764fda35a427f922964f461);
+            
+        
+
+        circle_marker_daf1fb42e9d0fc74dc589c0f254c1168.bindPopup(popup_6f7b6c753f3aad8d938e4e8bbbe050de)
+        ;
+
+        
+    
+    
+            circle_marker_daf1fb42e9d0fc74dc589c0f254c1168.bindTooltip(
+                `<div>
+                     雲林縣
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dafc18642f7af6345bed3fc4aae9493e = L.circleMarker(
+                [22.6273, 120.3014],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(map_83e279110f07e34b3848fed339f17bf8);
+        
+    
+        var popup_1fa77723788e2238544a197ee1980834 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c68d814a2493031eebe09946a348c0c8 = $(`<div id="html_c68d814a2493031eebe09946a348c0c8" style="width: 100.0%; height: 100.0%;"><b>高雄市</b><br>日期:2026-10-02<br>最低溫:27.0 °C<br>最高溫:32.0 °C<br>平均溫:29.5 °C</div>`)[0];
+                popup_1fa77723788e2238544a197ee1980834.setContent(html_c68d814a2493031eebe09946a348c0c8);
+            
+        
+
+        circle_marker_dafc18642f7af6345bed3fc4aae9493e.bindPopup(popup_1fa77723788e2238544a197ee1980834)
+        ;
+
+        
+    
+    
+            circle_marker_dafc18642f7af6345bed3fc4aae9493e.bindTooltip(
+                `<div>
+                     高雄市
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            map_83e279110f07e34b3848fed339f17bf8.fitBounds(
+                [[21.8, 118.1], [26.4, 122.1]],
+                {}
+            );
+        
+</script>
+</html>
