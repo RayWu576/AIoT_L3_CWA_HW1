@@ -184,7 +184,7 @@ def create_weather_map(rows):
                 sticky=True, class_name="weather-tooltip"),
             popup=folium.Popup(
                 _popup_html(region, forecast_date, low, high, average),
-                max_width=280, parse_html=True),
+                max_width=280, parse_html=False),
         )
         markers.append(marker.add_to(weather_map))
         count += 1

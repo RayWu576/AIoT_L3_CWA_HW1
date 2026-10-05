@@ -89,7 +89,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_f9959bb4976959453f40d5d1d67f7f80 {
+                #map_9ba30ac0cb82153043d6050dd19f89ed {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -126,14 +126,14 @@
 <body>
 
 
-            <div class="folium-map" id="map_f9959bb4976959453f40d5d1d67f7f80" ></div>
+            <div class="folium-map" id="map_9ba30ac0cb82153043d6050dd19f89ed" ></div>
 
 </body>
 <script>
 
 
-            var map_f9959bb4976959453f40d5d1d67f7f80 = L.map(
-                "map_f9959bb4976959453f40d5d1d67f7f80",
+            var map_9ba30ac0cb82153043d6050dd19f89ed = L.map(
+                "map_9ba30ac0cb82153043d6050dd19f89ed",
                 {
                     center: [23.7, 121.0],
                     crs: L.CRS.EPSG3857,
@@ -145,13 +145,13 @@
 
                 }
             );
-            L.control.scale().addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            L.control.scale().addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
 
 
 
-            var tile_layer_207d84ad1fe6618c06a9c5f873bfca33 = L.tileLayer(
+            var tile_layer_4245c842dd6b5b71f9c3f9a0f6218592 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -168,33 +168,33 @@
             );
 
 
-            tile_layer_207d84ad1fe6618c06a9c5f873bfca33.addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            tile_layer_4245c842dd6b5b71f9c3f9a0f6218592.addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-            var circle_marker_fd8815e230525c76fdb16b87b34e448f = L.circleMarker(
+            var circle_marker_23d3f06e37e66842e7aed767b513c3dd = L.circleMarker(
                 [23.9609, 120.9719],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_aad50f99ba4d64181cb8604d9856bfd3 = L.popup({
+        var popup_06f0e86717bc96c3b55928b206eba73b = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_2957e2d807263d84d60b2e6443895233 = $(`<div id="html_2957e2d807263d84d60b2e6443895233" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;南投縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;26.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_aad50f99ba4d64181cb8604d9856bfd3.setContent(html_2957e2d807263d84d60b2e6443895233);
+                var html_4784fb076ec3338533e5d978372ea84f = $(`<div id="html_4784fb076ec3338533e5d978372ea84f" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">南投縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>31.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>26.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_06f0e86717bc96c3b55928b206eba73b.setContent(html_4784fb076ec3338533e5d978372ea84f);
 
 
 
-        circle_marker_fd8815e230525c76fdb16b87b34e448f.bindPopup(popup_aad50f99ba4d64181cb8604d9856bfd3)
+        circle_marker_23d3f06e37e66842e7aed767b513c3dd.bindPopup(popup_06f0e86717bc96c3b55928b206eba73b)
         ;
 
 
 
 
-            circle_marker_fd8815e230525c76fdb16b87b34e448f.bindTooltip(
+            circle_marker_23d3f06e37e66842e7aed767b513c3dd.bindTooltip(
                 `<div>
                      南投縣 · 26.5°C
                  </div>`,
@@ -205,30 +205,30 @@
             );
 
 
-            var circle_marker_63a629a8af73ba109a295f7bea70ee9f = L.circleMarker(
+            var circle_marker_6ccbf46e04534c31162c9587002d56a7 = L.circleMarker(
                 [23.4801, 120.4491],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_ffdeb11713d1de21d080fc79c47833b7 = L.popup({
+        var popup_18817139c96bd8401cd45c166e568746 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_d78cee781b55a62c9759ae2dfbff628f = $(`<div id="html_d78cee781b55a62c9759ae2dfbff628f" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;嘉義市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;27.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_ffdeb11713d1de21d080fc79c47833b7.setContent(html_d78cee781b55a62c9759ae2dfbff628f);
+                var html_ee4ea517ed688031ca413b6b9c2236c8 = $(`<div id="html_ee4ea517ed688031ca413b6b9c2236c8" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">嘉義市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>32.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>27.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_18817139c96bd8401cd45c166e568746.setContent(html_ee4ea517ed688031ca413b6b9c2236c8);
 
 
 
-        circle_marker_63a629a8af73ba109a295f7bea70ee9f.bindPopup(popup_ffdeb11713d1de21d080fc79c47833b7)
+        circle_marker_6ccbf46e04534c31162c9587002d56a7.bindPopup(popup_18817139c96bd8401cd45c166e568746)
         ;
 
 
 
 
-            circle_marker_63a629a8af73ba109a295f7bea70ee9f.bindTooltip(
+            circle_marker_6ccbf46e04534c31162c9587002d56a7.bindTooltip(
                 `<div>
                      嘉義市 · 27.0°C
                  </div>`,
@@ -239,30 +239,30 @@
             );
 
 
-            var circle_marker_ea31eb6d57a8d4d725cfa1054ff47300 = L.circleMarker(
+            var circle_marker_64ec7075c377497f6ad1d051695cc371 = L.circleMarker(
                 [23.4518, 120.2555],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_851b792858c6cc28f6ca10039e69ee7c = L.popup({
+        var popup_bd8620d30a77db230132d86463717a1b = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_be040b9cbdd25f63d7249136aaa2116c = $(`<div id="html_be040b9cbdd25f63d7249136aaa2116c" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;嘉義縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;27.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_851b792858c6cc28f6ca10039e69ee7c.setContent(html_be040b9cbdd25f63d7249136aaa2116c);
+                var html_704239765ab22cc89c3e26b6e41999a3 = $(`<div id="html_704239765ab22cc89c3e26b6e41999a3" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">嘉義縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>32.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>27.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_bd8620d30a77db230132d86463717a1b.setContent(html_704239765ab22cc89c3e26b6e41999a3);
 
 
 
-        circle_marker_ea31eb6d57a8d4d725cfa1054ff47300.bindPopup(popup_851b792858c6cc28f6ca10039e69ee7c)
+        circle_marker_64ec7075c377497f6ad1d051695cc371.bindPopup(popup_bd8620d30a77db230132d86463717a1b)
         ;
 
 
 
 
-            circle_marker_ea31eb6d57a8d4d725cfa1054ff47300.bindTooltip(
+            circle_marker_64ec7075c377497f6ad1d051695cc371.bindTooltip(
                 `<div>
                      嘉義縣 · 27.5°C
                  </div>`,
@@ -273,30 +273,30 @@
             );
 
 
-            var circle_marker_4bd26b686ab558a371b628e35e3dfdb5 = L.circleMarker(
+            var circle_marker_7a79c8402c1dfca363d9f9ede8fe89ff = L.circleMarker(
                 [25.1276, 121.7392],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_22752fd5fa2b90c6938551531e55083a = L.popup({
+        var popup_0e367ff38916e7d742bcc68caa2d7334 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_b828b313e08b06db0e60c29c28454a7b = $(`<div id="html_b828b313e08b06db0e60c29c28454a7b" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;基隆市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;24.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_22752fd5fa2b90c6938551531e55083a.setContent(html_b828b313e08b06db0e60c29c28454a7b);
+                var html_70b68f367b7c89db250cab809de719ff = $(`<div id="html_70b68f367b7c89db250cab809de719ff" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">基隆市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>26.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>24.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_0e367ff38916e7d742bcc68caa2d7334.setContent(html_70b68f367b7c89db250cab809de719ff);
 
 
 
-        circle_marker_4bd26b686ab558a371b628e35e3dfdb5.bindPopup(popup_22752fd5fa2b90c6938551531e55083a)
+        circle_marker_7a79c8402c1dfca363d9f9ede8fe89ff.bindPopup(popup_0e367ff38916e7d742bcc68caa2d7334)
         ;
 
 
 
 
-            circle_marker_4bd26b686ab558a371b628e35e3dfdb5.bindTooltip(
+            circle_marker_7a79c8402c1dfca363d9f9ede8fe89ff.bindTooltip(
                 `<div>
                      基隆市 · 24.5°C
                  </div>`,
@@ -307,30 +307,30 @@
             );
 
 
-            var circle_marker_9461b9d16f0b65c9869f9b91b26d093a = L.circleMarker(
+            var circle_marker_7eb6a903862a1cb8900c2455628d66bc = L.circleMarker(
                 [24.7021, 121.7378],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_5e045eac88015e96347cdaa9f7bbdfcf = L.popup({
+        var popup_e64cfaff440b5b89cb7c1d44494ff31f = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_49a024dd2fc3591744c70ab18a066b6c = $(`<div id="html_49a024dd2fc3591744c70ab18a066b6c" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;宜蘭縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;23.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_5e045eac88015e96347cdaa9f7bbdfcf.setContent(html_49a024dd2fc3591744c70ab18a066b6c);
+                var html_d7a2f018b61576583cda5ae69841a6cf = $(`<div id="html_d7a2f018b61576583cda5ae69841a6cf" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">宜蘭縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>25.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>23.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_e64cfaff440b5b89cb7c1d44494ff31f.setContent(html_d7a2f018b61576583cda5ae69841a6cf);
 
 
 
-        circle_marker_9461b9d16f0b65c9869f9b91b26d093a.bindPopup(popup_5e045eac88015e96347cdaa9f7bbdfcf)
+        circle_marker_7eb6a903862a1cb8900c2455628d66bc.bindPopup(popup_e64cfaff440b5b89cb7c1d44494ff31f)
         ;
 
 
 
 
-            circle_marker_9461b9d16f0b65c9869f9b91b26d093a.bindTooltip(
+            circle_marker_7eb6a903862a1cb8900c2455628d66bc.bindTooltip(
                 `<div>
                      宜蘭縣 · 23.5°C
                  </div>`,
@@ -341,30 +341,30 @@
             );
 
 
-            var circle_marker_7b5f02542f5b00d01b78325d375377d5 = L.circleMarker(
+            var circle_marker_de83c377335bd31dffc6f4001cfe37f3 = L.circleMarker(
                 [22.5519, 120.5487],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_96fff22853cdcf59de1f1aab080c416c = L.popup({
+        var popup_eb8af55d32ec957e6b06b4c6090d3fa0 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_6dbb86d1eaf78fd6d805b43c3f3c1def = $(`<div id="html_6dbb86d1eaf78fd6d805b43c3f3c1def" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;屏東縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;24.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_96fff22853cdcf59de1f1aab080c416c.setContent(html_6dbb86d1eaf78fd6d805b43c3f3c1def);
+                var html_0f44036b7fd40d989a83c7e5b466267c = $(`<div id="html_0f44036b7fd40d989a83c7e5b466267c" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">屏東縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>24.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>32.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>28.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_eb8af55d32ec957e6b06b4c6090d3fa0.setContent(html_0f44036b7fd40d989a83c7e5b466267c);
 
 
 
-        circle_marker_7b5f02542f5b00d01b78325d375377d5.bindPopup(popup_96fff22853cdcf59de1f1aab080c416c)
+        circle_marker_de83c377335bd31dffc6f4001cfe37f3.bindPopup(popup_eb8af55d32ec957e6b06b4c6090d3fa0)
         ;
 
 
 
 
-            circle_marker_7b5f02542f5b00d01b78325d375377d5.bindTooltip(
+            circle_marker_de83c377335bd31dffc6f4001cfe37f3.bindTooltip(
                 `<div>
                      屏東縣 · 28.0°C
                  </div>`,
@@ -375,30 +375,30 @@
             );
 
 
-            var circle_marker_0242aa010fc62a06c2cfb5846be394c0 = L.circleMarker(
+            var circle_marker_d7607632d3b13566b6f7ba0bcb70c6a0 = L.circleMarker(
                 [24.0756, 120.544],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_4b382f86e200dc9029feebe1a2f68561 = L.popup({
+        var popup_2e7e0dfd00829e7e4aceef4bdd8ffb49 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_56703e0c7fe7f410e734fba438607bf7 = $(`<div id="html_56703e0c7fe7f410e734fba438607bf7" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;彰化縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;27.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_4b382f86e200dc9029feebe1a2f68561.setContent(html_56703e0c7fe7f410e734fba438607bf7);
+                var html_73ab9aa1a1ac8dee9a00f90c53143dcc = $(`<div id="html_73ab9aa1a1ac8dee9a00f90c53143dcc" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">彰化縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>31.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>27.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_2e7e0dfd00829e7e4aceef4bdd8ffb49.setContent(html_73ab9aa1a1ac8dee9a00f90c53143dcc);
 
 
 
-        circle_marker_0242aa010fc62a06c2cfb5846be394c0.bindPopup(popup_4b382f86e200dc9029feebe1a2f68561)
+        circle_marker_d7607632d3b13566b6f7ba0bcb70c6a0.bindPopup(popup_2e7e0dfd00829e7e4aceef4bdd8ffb49)
         ;
 
 
 
 
-            circle_marker_0242aa010fc62a06c2cfb5846be394c0.bindTooltip(
+            circle_marker_d7607632d3b13566b6f7ba0bcb70c6a0.bindTooltip(
                 `<div>
                      彰化縣 · 27.0°C
                  </div>`,
@@ -409,30 +409,30 @@
             );
 
 
-            var circle_marker_54ed2a2537d8dcc956785a75a865d7fc = L.circleMarker(
+            var circle_marker_b5bd0254f29e1d0c3a72996c6a9ee6e0 = L.circleMarker(
                 [25.0169, 121.4628],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_6edb9a0ec22a0c177243b78ceee97e27 = L.popup({
+        var popup_23e42f1297923ef50a4a2fa5c6ceaeea = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_3b760efd6cc5885fe4b407f72f58d553 = $(`<div id="html_3b760efd6cc5885fe4b407f72f58d553" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;新北市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;24.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_6edb9a0ec22a0c177243b78ceee97e27.setContent(html_3b760efd6cc5885fe4b407f72f58d553);
+                var html_a2195526747fefaf6a463e0c7f497bd3 = $(`<div id="html_a2195526747fefaf6a463e0c7f497bd3" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">新北市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>26.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>24.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_23e42f1297923ef50a4a2fa5c6ceaeea.setContent(html_a2195526747fefaf6a463e0c7f497bd3);
 
 
 
-        circle_marker_54ed2a2537d8dcc956785a75a865d7fc.bindPopup(popup_6edb9a0ec22a0c177243b78ceee97e27)
+        circle_marker_b5bd0254f29e1d0c3a72996c6a9ee6e0.bindPopup(popup_23e42f1297923ef50a4a2fa5c6ceaeea)
         ;
 
 
 
 
-            circle_marker_54ed2a2537d8dcc956785a75a865d7fc.bindTooltip(
+            circle_marker_b5bd0254f29e1d0c3a72996c6a9ee6e0.bindTooltip(
                 `<div>
                      新北市 · 24.5°C
                  </div>`,
@@ -443,30 +443,30 @@
             );
 
 
-            var circle_marker_7ee309fe8e8bd28a7a3172bc3eeb6fbf = L.circleMarker(
+            var circle_marker_58aa25917ad7abe909d1967023a0cb42 = L.circleMarker(
                 [24.8138, 120.9675],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_dedd6cf9d1a79b3cfdfc904b6fc7b3a2 = L.popup({
+        var popup_875b8dd4a04b27990bc1d4ca91a513d9 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_b45442e74a19dc80deaaa40e32d9b059 = $(`<div id="html_b45442e74a19dc80deaaa40e32d9b059" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;新竹市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;27.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;24.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_dedd6cf9d1a79b3cfdfc904b6fc7b3a2.setContent(html_b45442e74a19dc80deaaa40e32d9b059);
+                var html_53f12748b0e1f99883285420a5b5e17f = $(`<div id="html_53f12748b0e1f99883285420a5b5e17f" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">新竹市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>27.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>24.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_875b8dd4a04b27990bc1d4ca91a513d9.setContent(html_53f12748b0e1f99883285420a5b5e17f);
 
 
 
-        circle_marker_7ee309fe8e8bd28a7a3172bc3eeb6fbf.bindPopup(popup_dedd6cf9d1a79b3cfdfc904b6fc7b3a2)
+        circle_marker_58aa25917ad7abe909d1967023a0cb42.bindPopup(popup_875b8dd4a04b27990bc1d4ca91a513d9)
         ;
 
 
 
 
-            circle_marker_7ee309fe8e8bd28a7a3172bc3eeb6fbf.bindTooltip(
+            circle_marker_58aa25917ad7abe909d1967023a0cb42.bindTooltip(
                 `<div>
                      新竹市 · 24.5°C
                  </div>`,
@@ -477,30 +477,30 @@
             );
 
 
-            var circle_marker_2c058b3c987773051e91760704c072ae = L.circleMarker(
+            var circle_marker_4897a28fce5042c361d92c2bb40eb976 = L.circleMarker(
                 [24.8387, 121.0177],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_7c8ce880f825a134377a1742a4ce3ebf = L.popup({
+        var popup_3f886321437ef8a0bdf1f0a5eeeb8c0a = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_9ac129b7184868628dd690a9cc1b3d90 = $(`<div id="html_9ac129b7184868628dd690a9cc1b3d90" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;新竹縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;27.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;24.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_7c8ce880f825a134377a1742a4ce3ebf.setContent(html_9ac129b7184868628dd690a9cc1b3d90);
+                var html_1fa6338cc22e9ee59ee0fdb0dbd44dc5 = $(`<div id="html_1fa6338cc22e9ee59ee0fdb0dbd44dc5" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">新竹縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>27.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>24.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_3f886321437ef8a0bdf1f0a5eeeb8c0a.setContent(html_1fa6338cc22e9ee59ee0fdb0dbd44dc5);
 
 
 
-        circle_marker_2c058b3c987773051e91760704c072ae.bindPopup(popup_7c8ce880f825a134377a1742a4ce3ebf)
+        circle_marker_4897a28fce5042c361d92c2bb40eb976.bindPopup(popup_3f886321437ef8a0bdf1f0a5eeeb8c0a)
         ;
 
 
 
 
-            circle_marker_2c058b3c987773051e91760704c072ae.bindTooltip(
+            circle_marker_4897a28fce5042c361d92c2bb40eb976.bindTooltip(
                 `<div>
                      新竹縣 · 24.5°C
                  </div>`,
@@ -511,30 +511,30 @@
             );
 
 
-            var circle_marker_5ae2562e9dbf50e1cfa7739626d7ddec = L.circleMarker(
+            var circle_marker_12c2e7b2b5a44f7eb8b8da5fcf4348ea = L.circleMarker(
                 [24.9937, 121.301],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_c68cfe3856f10043ff7e86e0f2ec42e9 = L.popup({
+        var popup_86afc570e10bdb5563e00318267148de = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_a22a63cb901bba82304060f9b67f24f4 = $(`<div id="html_a22a63cb901bba82304060f9b67f24f4" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;桃園市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;24.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_c68cfe3856f10043ff7e86e0f2ec42e9.setContent(html_a22a63cb901bba82304060f9b67f24f4);
+                var html_afd06a654a1427f8c912377ded868170 = $(`<div id="html_afd06a654a1427f8c912377ded868170" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">桃園市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>26.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>24.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_86afc570e10bdb5563e00318267148de.setContent(html_afd06a654a1427f8c912377ded868170);
 
 
 
-        circle_marker_5ae2562e9dbf50e1cfa7739626d7ddec.bindPopup(popup_c68cfe3856f10043ff7e86e0f2ec42e9)
+        circle_marker_12c2e7b2b5a44f7eb8b8da5fcf4348ea.bindPopup(popup_86afc570e10bdb5563e00318267148de)
         ;
 
 
 
 
-            circle_marker_5ae2562e9dbf50e1cfa7739626d7ddec.bindTooltip(
+            circle_marker_12c2e7b2b5a44f7eb8b8da5fcf4348ea.bindTooltip(
                 `<div>
                      桃園市 · 24.0°C
                  </div>`,
@@ -545,30 +545,30 @@
             );
 
 
-            var circle_marker_6c0be92f72ad370111dba0c6a403cfe3 = L.circleMarker(
+            var circle_marker_7bb532fa58aba71057a629a317a19fac = L.circleMarker(
                 [23.5712, 119.5793],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_6f8562ed373f57d6d51bca929f9c7453 = L.popup({
+        var popup_604b1008c2a87ce0ac922b83aa765d5e = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_c48cf6da1b4a71aa80127b1ea64c1aba = $(`<div id="html_c48cf6da1b4a71aa80127b1ea64c1aba" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;澎湖縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;29.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;27.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_6f8562ed373f57d6d51bca929f9c7453.setContent(html_c48cf6da1b4a71aa80127b1ea64c1aba);
+                var html_17221c19e5c93445ec8ee278f943de59 = $(`<div id="html_17221c19e5c93445ec8ee278f943de59" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">澎湖縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>25.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>29.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>27.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_604b1008c2a87ce0ac922b83aa765d5e.setContent(html_17221c19e5c93445ec8ee278f943de59);
 
 
 
-        circle_marker_6c0be92f72ad370111dba0c6a403cfe3.bindPopup(popup_6f8562ed373f57d6d51bca929f9c7453)
+        circle_marker_7bb532fa58aba71057a629a317a19fac.bindPopup(popup_604b1008c2a87ce0ac922b83aa765d5e)
         ;
 
 
 
 
-            circle_marker_6c0be92f72ad370111dba0c6a403cfe3.bindTooltip(
+            circle_marker_7bb532fa58aba71057a629a317a19fac.bindTooltip(
                 `<div>
                      澎湖縣 · 27.0°C
                  </div>`,
@@ -579,30 +579,30 @@
             );
 
 
-            var circle_marker_2ef75c6f1eb50007c0af057fe90bc923 = L.circleMarker(
+            var circle_marker_098fb41eafa578ee672978f0064192c3 = L.circleMarker(
                 [24.1477, 120.6736],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_026a98ff39ec11fb7ec04767d721f747 = L.popup({
+        var popup_d692fa41e99867e1ead979d034c4a4d1 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_3fe4a08f9b8c28743387cdca3887d1c0 = $(`<div id="html_3fe4a08f9b8c28743387cdca3887d1c0" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺中市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;27.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_026a98ff39ec11fb7ec04767d721f747.setContent(html_3fe4a08f9b8c28743387cdca3887d1c0);
+                var html_5fb77f5e66ffe2728c689052850097df = $(`<div id="html_5fb77f5e66ffe2728c689052850097df" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">臺中市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>31.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>27.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_d692fa41e99867e1ead979d034c4a4d1.setContent(html_5fb77f5e66ffe2728c689052850097df);
 
 
 
-        circle_marker_2ef75c6f1eb50007c0af057fe90bc923.bindPopup(popup_026a98ff39ec11fb7ec04767d721f747)
+        circle_marker_098fb41eafa578ee672978f0064192c3.bindPopup(popup_d692fa41e99867e1ead979d034c4a4d1)
         ;
 
 
 
 
-            circle_marker_2ef75c6f1eb50007c0af057fe90bc923.bindTooltip(
+            circle_marker_098fb41eafa578ee672978f0064192c3.bindTooltip(
                 `<div>
                      臺中市 · 27.0°C
                  </div>`,
@@ -613,30 +613,30 @@
             );
 
 
-            var circle_marker_511affee4cb85d2520ffa3b5b66755af = L.circleMarker(
+            var circle_marker_645855fc3e8607cf6ea73f1056809ed1 = L.circleMarker(
                 [25.033, 121.5654],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_908651756efdb9c0b059bc0e9362842d = L.popup({
+        var popup_2e30c97cefa5db14e6986a5867118b77 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_3e7808809d895ae4ebe05b766c917940 = $(`<div id="html_3e7808809d895ae4ebe05b766c917940" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺北市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;24.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_908651756efdb9c0b059bc0e9362842d.setContent(html_3e7808809d895ae4ebe05b766c917940);
+                var html_51a48cf4d9943dc91e08144e6402cc47 = $(`<div id="html_51a48cf4d9943dc91e08144e6402cc47" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">臺北市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>26.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>24.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_2e30c97cefa5db14e6986a5867118b77.setContent(html_51a48cf4d9943dc91e08144e6402cc47);
 
 
 
-        circle_marker_511affee4cb85d2520ffa3b5b66755af.bindPopup(popup_908651756efdb9c0b059bc0e9362842d)
+        circle_marker_645855fc3e8607cf6ea73f1056809ed1.bindPopup(popup_2e30c97cefa5db14e6986a5867118b77)
         ;
 
 
 
 
-            circle_marker_511affee4cb85d2520ffa3b5b66755af.bindTooltip(
+            circle_marker_645855fc3e8607cf6ea73f1056809ed1.bindTooltip(
                 `<div>
                      臺北市 · 24.5°C
                  </div>`,
@@ -647,30 +647,30 @@
             );
 
 
-            var circle_marker_9961e14f3b9a56dd7976b0852aad36ec = L.circleMarker(
+            var circle_marker_7994aa0687e5202f7ba2435c3f73a886 = L.circleMarker(
                 [22.9999, 120.2269],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_c6567453f157bf4a1c0f2e148888fe4c = L.popup({
+        var popup_32bd029eb9a6d9034795404f90cf887c = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_7b3c7ca29bdf2f317ce4e0d02a4c3ed1 = $(`<div id="html_7b3c7ca29bdf2f317ce4e0d02a4c3ed1" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺南市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_c6567453f157bf4a1c0f2e148888fe4c.setContent(html_7b3c7ca29bdf2f317ce4e0d02a4c3ed1);
+                var html_ba9223ad8f8ec446c732338ed202c879 = $(`<div id="html_ba9223ad8f8ec446c732338ed202c879" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">臺南市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>25.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>31.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>28.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_32bd029eb9a6d9034795404f90cf887c.setContent(html_ba9223ad8f8ec446c732338ed202c879);
 
 
 
-        circle_marker_9961e14f3b9a56dd7976b0852aad36ec.bindPopup(popup_c6567453f157bf4a1c0f2e148888fe4c)
+        circle_marker_7994aa0687e5202f7ba2435c3f73a886.bindPopup(popup_32bd029eb9a6d9034795404f90cf887c)
         ;
 
 
 
 
-            circle_marker_9961e14f3b9a56dd7976b0852aad36ec.bindTooltip(
+            circle_marker_7994aa0687e5202f7ba2435c3f73a886.bindTooltip(
                 `<div>
                      臺南市 · 28.0°C
                  </div>`,
@@ -681,30 +681,30 @@
             );
 
 
-            var circle_marker_bc85155a43783476bc7f5735282dce66 = L.circleMarker(
+            var circle_marker_9bdd929361c77b1bb9c3979d553c393a = L.circleMarker(
                 [22.7554, 121.15],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_ded3b22c0d9e4250418ac812c638adfa = L.popup({
+        var popup_4fd0196a19cb24da5fe8d4248ac3fa6c = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_ff8306146bc2b6f1a065d05b7d9c6159 = $(`<div id="html_ff8306146bc2b6f1a065d05b7d9c6159" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺東縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;24.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;29.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;26.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_ded3b22c0d9e4250418ac812c638adfa.setContent(html_ff8306146bc2b6f1a065d05b7d9c6159);
+                var html_e7d19712cbe4c2427bfc12e6bd654296 = $(`<div id="html_e7d19712cbe4c2427bfc12e6bd654296" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">臺東縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>24.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>29.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>26.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_4fd0196a19cb24da5fe8d4248ac3fa6c.setContent(html_e7d19712cbe4c2427bfc12e6bd654296);
 
 
 
-        circle_marker_bc85155a43783476bc7f5735282dce66.bindPopup(popup_ded3b22c0d9e4250418ac812c638adfa)
+        circle_marker_9bdd929361c77b1bb9c3979d553c393a.bindPopup(popup_4fd0196a19cb24da5fe8d4248ac3fa6c)
         ;
 
 
 
 
-            circle_marker_bc85155a43783476bc7f5735282dce66.bindTooltip(
+            circle_marker_9bdd929361c77b1bb9c3979d553c393a.bindTooltip(
                 `<div>
                      臺東縣 · 26.5°C
                  </div>`,
@@ -715,30 +715,30 @@
             );
 
 
-            var circle_marker_c2cd0c35f5edbd05fa0dd300aa98d594 = L.circleMarker(
+            var circle_marker_229c59100a1a4a01aeee86e3987154d9 = L.circleMarker(
                 [23.9911, 121.6112],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_fcb2ec05eed04b7349f388091dad6fe7 = L.popup({
+        var popup_8f24ff619dbee605c005845dd0dcbc46 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_8f50ba79dfc28678e7efa9e3e140dcf3 = $(`<div id="html_8f50ba79dfc28678e7efa9e3e140dcf3" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;花蓮縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;27.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;25.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_fcb2ec05eed04b7349f388091dad6fe7.setContent(html_8f50ba79dfc28678e7efa9e3e140dcf3);
+                var html_222d9aa3502c7a0e0d055ff2721f9e96 = $(`<div id="html_222d9aa3502c7a0e0d055ff2721f9e96" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">花蓮縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>27.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>25.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_8f24ff619dbee605c005845dd0dcbc46.setContent(html_222d9aa3502c7a0e0d055ff2721f9e96);
 
 
 
-        circle_marker_c2cd0c35f5edbd05fa0dd300aa98d594.bindPopup(popup_fcb2ec05eed04b7349f388091dad6fe7)
+        circle_marker_229c59100a1a4a01aeee86e3987154d9.bindPopup(popup_8f24ff619dbee605c005845dd0dcbc46)
         ;
 
 
 
 
-            circle_marker_c2cd0c35f5edbd05fa0dd300aa98d594.bindTooltip(
+            circle_marker_229c59100a1a4a01aeee86e3987154d9.bindTooltip(
                 `<div>
                      花蓮縣 · 25.0°C
                  </div>`,
@@ -749,30 +749,30 @@
             );
 
 
-            var circle_marker_1240068e0cb034e5ceb7dfb2220a16a9 = L.circleMarker(
+            var circle_marker_a38f93e1a7bc2e27cb818126e36f162c = L.circleMarker(
                 [24.5602, 120.8214],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_9d823e54f6d289a0104a5f0b3ad1ef50 = L.popup({
+        var popup_53c6d5b836031699287b09b918e56f3d = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_2a500e862ad9710de6cd9f49cba70899 = $(`<div id="html_2a500e862ad9710de6cd9f49cba70899" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;苗栗縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;21.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;29.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;25.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_9d823e54f6d289a0104a5f0b3ad1ef50.setContent(html_2a500e862ad9710de6cd9f49cba70899);
+                var html_a6cb770316bafc4e9acdbac9c29d9c3f = $(`<div id="html_a6cb770316bafc4e9acdbac9c29d9c3f" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">苗栗縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>21.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>29.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>25.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_53c6d5b836031699287b09b918e56f3d.setContent(html_a6cb770316bafc4e9acdbac9c29d9c3f);
 
 
 
-        circle_marker_1240068e0cb034e5ceb7dfb2220a16a9.bindPopup(popup_9d823e54f6d289a0104a5f0b3ad1ef50)
+        circle_marker_a38f93e1a7bc2e27cb818126e36f162c.bindPopup(popup_53c6d5b836031699287b09b918e56f3d)
         ;
 
 
 
 
-            circle_marker_1240068e0cb034e5ceb7dfb2220a16a9.bindTooltip(
+            circle_marker_a38f93e1a7bc2e27cb818126e36f162c.bindTooltip(
                 `<div>
                      苗栗縣 · 25.0°C
                  </div>`,
@@ -783,30 +783,30 @@
             );
 
 
-            var circle_marker_b9ef8281719aafbb47ce3c0dfe58e42e = L.circleMarker(
+            var circle_marker_b5852aa89e8201586b0a4a64a9eefef8 = L.circleMarker(
                 [26.1605, 119.9517],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_7a6ca6c867cd820ae4e930d83d651d55 = L.popup({
+        var popup_2ed421b757677b39306bf176ef2cd3ae = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_e5e01cc79f65308e1f98970146222635 = $(`<div id="html_e5e01cc79f65308e1f98970146222635" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;連江縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;24.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_7a6ca6c867cd820ae4e930d83d651d55.setContent(html_e5e01cc79f65308e1f98970146222635);
+                var html_77cf0d204f8f6518c0194979a7a65170 = $(`<div id="html_77cf0d204f8f6518c0194979a7a65170" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">連江縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>23.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>26.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>24.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_2ed421b757677b39306bf176ef2cd3ae.setContent(html_77cf0d204f8f6518c0194979a7a65170);
 
 
 
-        circle_marker_b9ef8281719aafbb47ce3c0dfe58e42e.bindPopup(popup_7a6ca6c867cd820ae4e930d83d651d55)
+        circle_marker_b5852aa89e8201586b0a4a64a9eefef8.bindPopup(popup_2ed421b757677b39306bf176ef2cd3ae)
         ;
 
 
 
 
-            circle_marker_b9ef8281719aafbb47ce3c0dfe58e42e.bindTooltip(
+            circle_marker_b5852aa89e8201586b0a4a64a9eefef8.bindTooltip(
                 `<div>
                      連江縣 · 24.5°C
                  </div>`,
@@ -817,30 +817,30 @@
             );
 
 
-            var circle_marker_035dd8f4ad9cb1f0df8a039f4f912264 = L.circleMarker(
+            var circle_marker_31a37c489cbc5c88d0cc83268ccce0d5 = L.circleMarker(
                 [24.4494, 118.3767],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_3d999620c9832ece9757db76d78d389a = L.popup({
+        var popup_9dd9be84001afe7dd347f2795d732466 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_8ef06a36fdd04c333e8458e522ab7214 = $(`<div id="html_8ef06a36fdd04c333e8458e522ab7214" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;金門縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;29.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;25.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_3d999620c9832ece9757db76d78d389a.setContent(html_8ef06a36fdd04c333e8458e522ab7214);
+                var html_14b119732b5cca3a6516785f17565f6a = $(`<div id="html_14b119732b5cca3a6516785f17565f6a" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">金門縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>29.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>25.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_9dd9be84001afe7dd347f2795d732466.setContent(html_14b119732b5cca3a6516785f17565f6a);
 
 
 
-        circle_marker_035dd8f4ad9cb1f0df8a039f4f912264.bindPopup(popup_3d999620c9832ece9757db76d78d389a)
+        circle_marker_31a37c489cbc5c88d0cc83268ccce0d5.bindPopup(popup_9dd9be84001afe7dd347f2795d732466)
         ;
 
 
 
 
-            circle_marker_035dd8f4ad9cb1f0df8a039f4f912264.bindTooltip(
+            circle_marker_31a37c489cbc5c88d0cc83268ccce0d5.bindTooltip(
                 `<div>
                      金門縣 · 25.5°C
                  </div>`,
@@ -851,30 +851,30 @@
             );
 
 
-            var circle_marker_2aaeccf998b6ea93a29d9efc14b126d5 = L.circleMarker(
+            var circle_marker_0f643374e7eec931e65355698d80120b = L.circleMarker(
                 [23.7092, 120.4313],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_2d6c1c743dc06c3dbdfe062ee815f3f4 = L.popup({
+        var popup_65392f078783a2a11011992bad73aa70 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_d5f821372c37ff9be491d0d1771ee6eb = $(`<div id="html_d5f821372c37ff9be491d0d1771ee6eb" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;雲林縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;22.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;26.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_2d6c1c743dc06c3dbdfe062ee815f3f4.setContent(html_d5f821372c37ff9be491d0d1771ee6eb);
+                var html_105b450b0109b1c73e64e8ee4eb4859b = $(`<div id="html_105b450b0109b1c73e64e8ee4eb4859b" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">雲林縣</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>22.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>31.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>26.5 °C</strong></div>     </section>     </div>`)[0];
+                popup_65392f078783a2a11011992bad73aa70.setContent(html_105b450b0109b1c73e64e8ee4eb4859b);
 
 
 
-        circle_marker_2aaeccf998b6ea93a29d9efc14b126d5.bindPopup(popup_2d6c1c743dc06c3dbdfe062ee815f3f4)
+        circle_marker_0f643374e7eec931e65355698d80120b.bindPopup(popup_65392f078783a2a11011992bad73aa70)
         ;
 
 
 
 
-            circle_marker_2aaeccf998b6ea93a29d9efc14b126d5.bindTooltip(
+            circle_marker_0f643374e7eec931e65355698d80120b.bindTooltip(
                 `<div>
                      雲林縣 · 26.5°C
                  </div>`,
@@ -885,30 +885,30 @@
             );
 
 
-            var circle_marker_66d8a2f5e645980b1c9c2f8b6b3f262f = L.circleMarker(
+            var circle_marker_78c24a8afceb5fd4895c11907cede299 = L.circleMarker(
                 [22.6273, 120.3014],
                 {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
-            ).addTo(map_f9959bb4976959453f40d5d1d67f7f80);
+            ).addTo(map_9ba30ac0cb82153043d6050dd19f89ed);
 
 
-        var popup_24c435722986b33d448811267f88215d = L.popup({
+        var popup_4875292c73bd094ba59403948e3f2293 = L.popup({
   "maxWidth": 280,
 });
 
 
 
-                var html_10f83c11b2cae42b32193e1ceedc9508 = $(`<div id="html_10f83c11b2cae42b32193e1ceedc9508" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;高雄市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-06&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
-                popup_24c435722986b33d448811267f88215d.setContent(html_10f83c11b2cae42b32193e1ceedc9508);
+                var html_88cd2ce9aa1f8e0add8ca93fc0e9e8a2 = $(`<div id="html_88cd2ce9aa1f8e0add8ca93fc0e9e8a2" style="width: 100.0%; height: 100.0%;">     <section class="weather-popup">       <div class="weather-popup__eyebrow">DAILY FORECAST</div>       <div class="weather-popup__title">高雄市</div>       <div class="weather-popup__date">2026-10-06</div>       <div class="weather-popup__temperatures">         <div class="weather-popup__temperature weather-popup__temperature--low">           <span>最低溫</span><strong>25.0°</strong>         </div>         <div class="weather-popup__temperature weather-popup__temperature--high">           <span>最高溫</span><strong>31.0°</strong>         </div>       </div>       <div class="weather-popup__average"><span>平均溫</span><strong>28.0 °C</strong></div>     </section>     </div>`)[0];
+                popup_4875292c73bd094ba59403948e3f2293.setContent(html_88cd2ce9aa1f8e0add8ca93fc0e9e8a2);
 
 
 
-        circle_marker_66d8a2f5e645980b1c9c2f8b6b3f262f.bindPopup(popup_24c435722986b33d448811267f88215d)
+        circle_marker_78c24a8afceb5fd4895c11907cede299.bindPopup(popup_4875292c73bd094ba59403948e3f2293)
         ;
 
 
 
 
-            circle_marker_66d8a2f5e645980b1c9c2f8b6b3f262f.bindTooltip(
+            circle_marker_78c24a8afceb5fd4895c11907cede299.bindTooltip(
                 `<div>
                      高雄市 · 28.0°C
                  </div>`,
@@ -920,8 +920,8 @@
 
 
     (function () {
-      const map = map_f9959bb4976959453f40d5d1d67f7f80;
-      const markers = [circle_marker_fd8815e230525c76fdb16b87b34e448f,circle_marker_63a629a8af73ba109a295f7bea70ee9f,circle_marker_ea31eb6d57a8d4d725cfa1054ff47300,circle_marker_4bd26b686ab558a371b628e35e3dfdb5,circle_marker_9461b9d16f0b65c9869f9b91b26d093a,circle_marker_7b5f02542f5b00d01b78325d375377d5,circle_marker_0242aa010fc62a06c2cfb5846be394c0,circle_marker_54ed2a2537d8dcc956785a75a865d7fc,circle_marker_7ee309fe8e8bd28a7a3172bc3eeb6fbf,circle_marker_2c058b3c987773051e91760704c072ae,circle_marker_5ae2562e9dbf50e1cfa7739626d7ddec,circle_marker_6c0be92f72ad370111dba0c6a403cfe3,circle_marker_2ef75c6f1eb50007c0af057fe90bc923,circle_marker_511affee4cb85d2520ffa3b5b66755af,circle_marker_9961e14f3b9a56dd7976b0852aad36ec,circle_marker_bc85155a43783476bc7f5735282dce66,circle_marker_c2cd0c35f5edbd05fa0dd300aa98d594,circle_marker_1240068e0cb034e5ceb7dfb2220a16a9,circle_marker_b9ef8281719aafbb47ce3c0dfe58e42e,circle_marker_035dd8f4ad9cb1f0df8a039f4f912264,circle_marker_2aaeccf998b6ea93a29d9efc14b126d5,circle_marker_66d8a2f5e645980b1c9c2f8b6b3f262f];
+      const map = map_9ba30ac0cb82153043d6050dd19f89ed;
+      const markers = [circle_marker_23d3f06e37e66842e7aed767b513c3dd,circle_marker_6ccbf46e04534c31162c9587002d56a7,circle_marker_64ec7075c377497f6ad1d051695cc371,circle_marker_7a79c8402c1dfca363d9f9ede8fe89ff,circle_marker_7eb6a903862a1cb8900c2455628d66bc,circle_marker_de83c377335bd31dffc6f4001cfe37f3,circle_marker_d7607632d3b13566b6f7ba0bcb70c6a0,circle_marker_b5bd0254f29e1d0c3a72996c6a9ee6e0,circle_marker_58aa25917ad7abe909d1967023a0cb42,circle_marker_4897a28fce5042c361d92c2bb40eb976,circle_marker_12c2e7b2b5a44f7eb8b8da5fcf4348ea,circle_marker_7bb532fa58aba71057a629a317a19fac,circle_marker_098fb41eafa578ee672978f0064192c3,circle_marker_645855fc3e8607cf6ea73f1056809ed1,circle_marker_7994aa0687e5202f7ba2435c3f73a886,circle_marker_9bdd929361c77b1bb9c3979d553c393a,circle_marker_229c59100a1a4a01aeee86e3987154d9,circle_marker_a38f93e1a7bc2e27cb818126e36f162c,circle_marker_b5852aa89e8201586b0a4a64a9eefef8,circle_marker_31a37c489cbc5c88d0cc83268ccce0d5,circle_marker_0f643374e7eec931e65355698d80120b,circle_marker_78c24a8afceb5fd4895c11907cede299];
       const minZoom = 8;
       const hint = L.control({ position: "topleft" });
       hint.onAdd = function () {
@@ -944,7 +944,7 @@
     })();
 
 
-            map_f9959bb4976959453f40d5d1d67f7f80.fitBounds(
+            map_9ba30ac0cb82153043d6050dd19f89ed.fitBounds(
                 [[21.8, 118.1], [26.4, 122.1]],
                 {}
             );
