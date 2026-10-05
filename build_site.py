@@ -94,6 +94,7 @@ def build_site(db_path=None, output=None):
             '<script src="../static/vendor/leaflet.js"></script>\n'
         )
         html = html.replace("<head>", "<head>\n    " + local_assets, 1)
+        html = "\n".join(line.rstrip() for line in html.splitlines()) + "\n"
         map_path.write_text(html, encoding="utf-8")
         manifest[day] = {"url": relative_path, "warnings": warnings, "count": count}
     exports = [

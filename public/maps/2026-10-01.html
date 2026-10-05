@@ -5,8 +5,81 @@
 <script src="../static/vendor/jquery.min.js"></script>
 <script src="../static/vendor/leaflet.js"></script>
 
-    
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <style>
+      .leaflet-interactive.weather-marker {
+        filter: drop-shadow(0 2px 4px rgba(3, 12, 24, .48));
+        transition: filter .16s ease, stroke-width .16s ease;
+      }
+      .leaflet-interactive.weather-marker:hover {
+        filter: drop-shadow(0 0 7px rgba(255, 255, 255, .8));
+        stroke-width: 3px;
+      }
+      .leaflet-tooltip.weather-tooltip {
+        border: 1px solid rgba(255,255,255,.28);
+        border-radius: 9px;
+        background: #101b2b;
+        color: #f1f6fc;
+        box-shadow: 0 6px 20px rgba(0,0,0,.24);
+        font: 600 12px/1.3 system-ui, sans-serif;
+        padding: 7px 10px;
+      }
+      .leaflet-tooltip.weather-tooltip:before { border-top-color: #101b2b; }
+      .leaflet-popup-content-wrapper {
+        padding: 0 !important;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.34);
+        border-radius: 16px !important;
+        background: #111d2d !important;
+        box-shadow: 0 14px 38px rgba(4,12,22,.38) !important;
+      }
+      .leaflet-popup-content { margin: 0 !important; width: 250px !important; }
+      .leaflet-popup-tip { background: #111d2d !important; }
+      .leaflet-popup-close-button {
+        z-index: 2;
+        padding: 8px 10px 0 0 !important;
+        color: #a8bbd1 !important;
+        font: 400 20px/1 system-ui, sans-serif !important;
+      }
+      .weather-popup {
+        box-sizing: border-box;
+        padding: 16px;
+        color: #eaf1f9;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        background: radial-gradient(130% 110% at 100% 0%, #233a55 0%, #142338 48%, #101a29 100%);
+      }
+      .weather-popup__eyebrow {
+        margin-bottom: 4px;
+        color: #92a8c1;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: .16em;
+      }
+      .weather-popup__title { color: #f5f8fc; font-size: 19px; font-weight: 750; line-height: 1.3; }
+      .weather-popup__date { margin-top: 3px; color: #a9bbcf; font-size: 12px; }
+      .weather-popup__temperatures { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 14px; }
+      .weather-popup__temperature {
+        display: flex; flex-direction: column; gap: 5px;
+        padding: 10px 11px; border: 1px solid rgba(182,205,231,.12);
+        border-radius: 11px; background: rgba(255,255,255,.055);
+      }
+      .weather-popup__temperature span, .weather-popup__average span { color: #9db0c6; font-size: 11px; }
+      .weather-popup__temperature strong { font-size: 21px; line-height: 1; }
+      .weather-popup__temperature--low strong { color: #8fd0e2; }
+      .weather-popup__temperature--high strong { color: #ffbc88; }
+      .weather-popup__average {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(182,205,231,.14);
+      }
+      .weather-popup__average strong { color: #f4f7fb; font-size: 15px; }
+      .weather-zoom-hint {
+        margin-top: 8px; padding: 8px 11px; border: 1px solid rgba(255,255,255,.18);
+        border-radius: 10px; background: rgba(16,27,43,.94); color: #e5edf7;
+        box-shadow: 0 4px 14px rgba(0,0,0,.18); font: 600 11px/1.35 system-ui, sans-serif;
+      }
+    </style>
 
 
 
@@ -16,7 +89,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_62d9807a3b1b09a09c09ee489791c6c2 {
+                #map_d2eb78d2c98c64c9819de412a26573c2 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -48,19 +121,19 @@
                 L_DISABLE_3D = false;
             </script>
 
-        
+
 </head>
 <body>
-    
-    
-            <div class="folium-map" id="map_62d9807a3b1b09a09c09ee489791c6c2" ></div>
-        
+
+
+            <div class="folium-map" id="map_d2eb78d2c98c64c9819de412a26573c2" ></div>
+
 </body>
 <script>
-    
-    
-            var map_62d9807a3b1b09a09c09ee489791c6c2 = L.map(
-                "map_62d9807a3b1b09a09c09ee489791c6c2",
+
+
+            var map_d2eb78d2c98c64c9819de412a26573c2 = L.map(
+                "map_d2eb78d2c98c64c9819de412a26573c2",
                 {
                     center: [23.7, 121.0],
                     crs: L.CRS.EPSG3857,
@@ -72,12 +145,13 @@
 
                 }
             );
+            L.control.scale().addTo(map_d2eb78d2c98c64c9819de412a26573c2);
 
-            
 
-        
-    
-            var tile_layer_50f2f073162d1269ef45dff1d17aa43a = L.tileLayer(
+
+
+
+            var tile_layer_8959bc00dde798403b27f53d954351c9 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -92,741 +166,788 @@
 }
 
             );
-        
-    
-            tile_layer_50f2f073162d1269ef45dff1d17aa43a.addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-            var circle_marker_d819b4d1fe773462e8b2d654fd67dd37 = L.circleMarker(
+
+
+            tile_layer_8959bc00dde798403b27f53d954351c9.addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+            var circle_marker_eedef3582e220652a27d817fb2b46837 = L.circleMarker(
                 [23.9609, 120.9719],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_bb3ec6a9a45a80df24cf5ec0a2676517 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_9a35867332199f6b5f5875d8f8120a76 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_1be0c6f2d45ce10a7794ea89f0867d7e = $(`<div id="html_1be0c6f2d45ce10a7794ea89f0867d7e" style="width: 100.0%; height: 100.0%;"><b>南投縣</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:33.0 °C<br>平均溫:29.0 °C</div>`)[0];
-                popup_bb3ec6a9a45a80df24cf5ec0a2676517.setContent(html_1be0c6f2d45ce10a7794ea89f0867d7e);
-            
-        
 
-        circle_marker_d819b4d1fe773462e8b2d654fd67dd37.bindPopup(popup_bb3ec6a9a45a80df24cf5ec0a2676517)
+
+                var html_82842a1649fe8fadf6ef66eb7397d8cd = $(`<div id="html_82842a1649fe8fadf6ef66eb7397d8cd" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;南投縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;33.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_9a35867332199f6b5f5875d8f8120a76.setContent(html_82842a1649fe8fadf6ef66eb7397d8cd);
+
+
+
+        circle_marker_eedef3582e220652a27d817fb2b46837.bindPopup(popup_9a35867332199f6b5f5875d8f8120a76)
         ;
 
-        
-    
-    
-            circle_marker_d819b4d1fe773462e8b2d654fd67dd37.bindTooltip(
+
+
+
+            circle_marker_eedef3582e220652a27d817fb2b46837.bindTooltip(
                 `<div>
-                     南投縣
+                     南投縣 · 29.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_ee581abdf604a910176ef349da1a5c1e = L.circleMarker(
+
+
+            var circle_marker_596879ee41aa26f11145bc11d866240a = L.circleMarker(
                 [23.4801, 120.4491],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_b6952b53adf460f7ddc9b4e85212a31f = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_0ec6a7504f10f9931ef1f65f58f209c6 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_02f1b6cb984a47c19e0fc2d65e935c0a = $(`<div id="html_02f1b6cb984a47c19e0fc2d65e935c0a" style="width: 100.0%; height: 100.0%;"><b>嘉義市</b><br>日期:2026-10-01<br>最低溫:24.0 °C<br>最高溫:34.0 °C<br>平均溫:29.0 °C</div>`)[0];
-                popup_b6952b53adf460f7ddc9b4e85212a31f.setContent(html_02f1b6cb984a47c19e0fc2d65e935c0a);
-            
-        
 
-        circle_marker_ee581abdf604a910176ef349da1a5c1e.bindPopup(popup_b6952b53adf460f7ddc9b4e85212a31f)
+
+                var html_55d33403c13fffe1a92e8c455532bab1 = $(`<div id="html_55d33403c13fffe1a92e8c455532bab1" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;嘉義市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;24.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;34.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_0ec6a7504f10f9931ef1f65f58f209c6.setContent(html_55d33403c13fffe1a92e8c455532bab1);
+
+
+
+        circle_marker_596879ee41aa26f11145bc11d866240a.bindPopup(popup_0ec6a7504f10f9931ef1f65f58f209c6)
         ;
 
-        
-    
-    
-            circle_marker_ee581abdf604a910176ef349da1a5c1e.bindTooltip(
+
+
+
+            circle_marker_596879ee41aa26f11145bc11d866240a.bindTooltip(
                 `<div>
-                     嘉義市
+                     嘉義市 · 29.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_4c84097d9c9497a53b4964242f768fe8 = L.circleMarker(
+
+
+            var circle_marker_1e28e86d899e42f7d1d0621765e6c1a0 = L.circleMarker(
                 [23.4518, 120.2555],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_6a4a3353dedc77a8309a1816972f08f9 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_aad9332e3a8922ad2db220e2f9322138 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_e6d1ce418ff9d7393a55acf73b172307 = $(`<div id="html_e6d1ce418ff9d7393a55acf73b172307" style="width: 100.0%; height: 100.0%;"><b>嘉義縣</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:34.0 °C<br>平均溫:29.5 °C</div>`)[0];
-                popup_6a4a3353dedc77a8309a1816972f08f9.setContent(html_e6d1ce418ff9d7393a55acf73b172307);
-            
-        
 
-        circle_marker_4c84097d9c9497a53b4964242f768fe8.bindPopup(popup_6a4a3353dedc77a8309a1816972f08f9)
+
+                var html_12bfecfae8d7c63ba2b481b312851b1e = $(`<div id="html_12bfecfae8d7c63ba2b481b312851b1e" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;嘉義縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;34.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_aad9332e3a8922ad2db220e2f9322138.setContent(html_12bfecfae8d7c63ba2b481b312851b1e);
+
+
+
+        circle_marker_1e28e86d899e42f7d1d0621765e6c1a0.bindPopup(popup_aad9332e3a8922ad2db220e2f9322138)
         ;
 
-        
-    
-    
-            circle_marker_4c84097d9c9497a53b4964242f768fe8.bindTooltip(
+
+
+
+            circle_marker_1e28e86d899e42f7d1d0621765e6c1a0.bindTooltip(
                 `<div>
-                     嘉義縣
+                     嘉義縣 · 29.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_26e1133f74c40a9e45f4febc054b6f4b = L.circleMarker(
+
+
+            var circle_marker_ec07e7642df2a1c801fa9a9b1a34082a = L.circleMarker(
                 [25.1276, 121.7392],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_a4138c26ffe3f38ff2ea6e91459ef113 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_980c519eefb77ca8a1532007afc99652 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_e3d34f4620f860dd9c173570d8905b29 = $(`<div id="html_e3d34f4620f860dd9c173570d8905b29" style="width: 100.0%; height: 100.0%;"><b>基隆市</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:31.0 °C<br>平均溫:28.0 °C</div>`)[0];
-                popup_a4138c26ffe3f38ff2ea6e91459ef113.setContent(html_e3d34f4620f860dd9c173570d8905b29);
-            
-        
 
-        circle_marker_26e1133f74c40a9e45f4febc054b6f4b.bindPopup(popup_a4138c26ffe3f38ff2ea6e91459ef113)
+
+                var html_0f36c2b46c1786d0fff6b70bb092a6a5 = $(`<div id="html_0f36c2b46c1786d0fff6b70bb092a6a5" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;基隆市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_980c519eefb77ca8a1532007afc99652.setContent(html_0f36c2b46c1786d0fff6b70bb092a6a5);
+
+
+
+        circle_marker_ec07e7642df2a1c801fa9a9b1a34082a.bindPopup(popup_980c519eefb77ca8a1532007afc99652)
         ;
 
-        
-    
-    
-            circle_marker_26e1133f74c40a9e45f4febc054b6f4b.bindTooltip(
+
+
+
+            circle_marker_ec07e7642df2a1c801fa9a9b1a34082a.bindTooltip(
                 `<div>
-                     基隆市
+                     基隆市 · 28.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_7117ec2ca42d4601f3a391a7295ce1b9 = L.circleMarker(
+
+
+            var circle_marker_f61e2a10c1e693e3cac9c0d5219bf935 = L.circleMarker(
                 [24.7021, 121.7378],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_4638cc30eb779996beab7364c761c377 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_7973a561cc818de00a5a135a822d5826 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_ef0cc5a9d52c54a2750e4246ad5bd9f7 = $(`<div id="html_ef0cc5a9d52c54a2750e4246ad5bd9f7" style="width: 100.0%; height: 100.0%;"><b>宜蘭縣</b><br>日期:2026-10-01<br>最低溫:24.0 °C<br>最高溫:33.0 °C<br>平均溫:28.5 °C</div>`)[0];
-                popup_4638cc30eb779996beab7364c761c377.setContent(html_ef0cc5a9d52c54a2750e4246ad5bd9f7);
-            
-        
 
-        circle_marker_7117ec2ca42d4601f3a391a7295ce1b9.bindPopup(popup_4638cc30eb779996beab7364c761c377)
+
+                var html_8679a7a232875e7b75ab250979d14a54 = $(`<div id="html_8679a7a232875e7b75ab250979d14a54" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;宜蘭縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;24.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;33.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_7973a561cc818de00a5a135a822d5826.setContent(html_8679a7a232875e7b75ab250979d14a54);
+
+
+
+        circle_marker_f61e2a10c1e693e3cac9c0d5219bf935.bindPopup(popup_7973a561cc818de00a5a135a822d5826)
         ;
 
-        
-    
-    
-            circle_marker_7117ec2ca42d4601f3a391a7295ce1b9.bindTooltip(
+
+
+
+            circle_marker_f61e2a10c1e693e3cac9c0d5219bf935.bindTooltip(
                 `<div>
-                     宜蘭縣
+                     宜蘭縣 · 28.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_088dbbf24dfb4a1bd0d0b8e6ce972ec1 = L.circleMarker(
+
+
+            var circle_marker_edf0d96a30a9e45027388043ccbf3ed8 = L.circleMarker(
                 [22.5519, 120.5487],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_3b1d092ee83175db96cbc62e7eb0a2a9 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_be0ad1e9f45bddbb167bc5cbda8c4fb0 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_17332dcd5638c96f0bce921f0a08faf1 = $(`<div id="html_17332dcd5638c96f0bce921f0a08faf1" style="width: 100.0%; height: 100.0%;"><b>屏東縣</b><br>日期:2026-10-01<br>最低溫:26.0 °C<br>最高溫:34.0 °C<br>平均溫:30.0 °C</div>`)[0];
-                popup_3b1d092ee83175db96cbc62e7eb0a2a9.setContent(html_17332dcd5638c96f0bce921f0a08faf1);
-            
-        
 
-        circle_marker_088dbbf24dfb4a1bd0d0b8e6ce972ec1.bindPopup(popup_3b1d092ee83175db96cbc62e7eb0a2a9)
+
+                var html_38ac4a81530355e4fb2f01b160dc68c0 = $(`<div id="html_38ac4a81530355e4fb2f01b160dc68c0" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;屏東縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;34.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;30.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_be0ad1e9f45bddbb167bc5cbda8c4fb0.setContent(html_38ac4a81530355e4fb2f01b160dc68c0);
+
+
+
+        circle_marker_edf0d96a30a9e45027388043ccbf3ed8.bindPopup(popup_be0ad1e9f45bddbb167bc5cbda8c4fb0)
         ;
 
-        
-    
-    
-            circle_marker_088dbbf24dfb4a1bd0d0b8e6ce972ec1.bindTooltip(
+
+
+
+            circle_marker_edf0d96a30a9e45027388043ccbf3ed8.bindTooltip(
                 `<div>
-                     屏東縣
+                     屏東縣 · 30.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_0a20e28ec9d4e848a580a741cd49412c = L.circleMarker(
+
+
+            var circle_marker_bbd5a5a2c0ee0bdb75af7c2756baca80 = L.circleMarker(
                 [24.0756, 120.544],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_685df4d4e69fba364b103c8b439215ea = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_58c145f56b82b94a22f53608dc81de2c = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_806ec8470b18e652f496c281d1e34ae3 = $(`<div id="html_806ec8470b18e652f496c281d1e34ae3" style="width: 100.0%; height: 100.0%;"><b>彰化縣</b><br>日期:2026-10-01<br>最低溫:26.0 °C<br>最高溫:35.0 °C<br>平均溫:30.5 °C</div>`)[0];
-                popup_685df4d4e69fba364b103c8b439215ea.setContent(html_806ec8470b18e652f496c281d1e34ae3);
-            
-        
 
-        circle_marker_0a20e28ec9d4e848a580a741cd49412c.bindPopup(popup_685df4d4e69fba364b103c8b439215ea)
+
+                var html_312f5115f24069649cc35c69b0bf547a = $(`<div id="html_312f5115f24069649cc35c69b0bf547a" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;彰化縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;35.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;30.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_58c145f56b82b94a22f53608dc81de2c.setContent(html_312f5115f24069649cc35c69b0bf547a);
+
+
+
+        circle_marker_bbd5a5a2c0ee0bdb75af7c2756baca80.bindPopup(popup_58c145f56b82b94a22f53608dc81de2c)
         ;
 
-        
-    
-    
-            circle_marker_0a20e28ec9d4e848a580a741cd49412c.bindTooltip(
+
+
+
+            circle_marker_bbd5a5a2c0ee0bdb75af7c2756baca80.bindTooltip(
                 `<div>
-                     彰化縣
+                     彰化縣 · 30.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_1f4425153d158e075ba8a0bb014b6a5d = L.circleMarker(
+
+
+            var circle_marker_f1069011f8fbd89cc8799b73525fcef4 = L.circleMarker(
                 [25.0169, 121.4628],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_c965c10b08798d708104936816b9d8de = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_31063fdc62f54bdf52919d069df1167e = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_e129fbdc0c7907cf64fde86da7f7b390 = $(`<div id="html_e129fbdc0c7907cf64fde86da7f7b390" style="width: 100.0%; height: 100.0%;"><b>新北市</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:34.0 °C<br>平均溫:29.5 °C</div>`)[0];
-                popup_c965c10b08798d708104936816b9d8de.setContent(html_e129fbdc0c7907cf64fde86da7f7b390);
-            
-        
 
-        circle_marker_1f4425153d158e075ba8a0bb014b6a5d.bindPopup(popup_c965c10b08798d708104936816b9d8de)
+
+                var html_98bbdaa4bfb8ad281782e943605c2aad = $(`<div id="html_98bbdaa4bfb8ad281782e943605c2aad" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;新北市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;34.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_31063fdc62f54bdf52919d069df1167e.setContent(html_98bbdaa4bfb8ad281782e943605c2aad);
+
+
+
+        circle_marker_f1069011f8fbd89cc8799b73525fcef4.bindPopup(popup_31063fdc62f54bdf52919d069df1167e)
         ;
 
-        
-    
-    
-            circle_marker_1f4425153d158e075ba8a0bb014b6a5d.bindTooltip(
+
+
+
+            circle_marker_f1069011f8fbd89cc8799b73525fcef4.bindTooltip(
                 `<div>
-                     新北市
+                     新北市 · 29.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_822c99f4e3ab74e910001c10aaeadfa9 = L.circleMarker(
+
+
+            var circle_marker_17f699853e643f19cd2e73781cd26685 = L.circleMarker(
                 [24.8138, 120.9675],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_9e7893c192767a5ac184e1e5db80520b = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_5c7a950c29215cfd25e402de37e5d7b6 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_71ae9a7931a5d2102f13586083cb259c = $(`<div id="html_71ae9a7931a5d2102f13586083cb259c" style="width: 100.0%; height: 100.0%;"><b>新竹市</b><br>日期:2026-10-01<br>最低溫:24.0 °C<br>最高溫:31.0 °C<br>平均溫:27.5 °C</div>`)[0];
-                popup_9e7893c192767a5ac184e1e5db80520b.setContent(html_71ae9a7931a5d2102f13586083cb259c);
-            
-        
 
-        circle_marker_822c99f4e3ab74e910001c10aaeadfa9.bindPopup(popup_9e7893c192767a5ac184e1e5db80520b)
+
+                var html_f01e8f474c1ee02e27811d5ef30bc0bc = $(`<div id="html_f01e8f474c1ee02e27811d5ef30bc0bc" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;新竹市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;24.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;27.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_5c7a950c29215cfd25e402de37e5d7b6.setContent(html_f01e8f474c1ee02e27811d5ef30bc0bc);
+
+
+
+        circle_marker_17f699853e643f19cd2e73781cd26685.bindPopup(popup_5c7a950c29215cfd25e402de37e5d7b6)
         ;
 
-        
-    
-    
-            circle_marker_822c99f4e3ab74e910001c10aaeadfa9.bindTooltip(
+
+
+
+            circle_marker_17f699853e643f19cd2e73781cd26685.bindTooltip(
                 `<div>
-                     新竹市
+                     新竹市 · 27.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_fc41b341373ae01a6379636524b17a79 = L.circleMarker(
+
+
+            var circle_marker_c14682b7c54392a5d7825d41d79288b2 = L.circleMarker(
                 [24.8387, 121.0177],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_fcecea86d3aae891f89c6b1a4f3b72bd = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_69b2454967c553621b76eefb60fec83c = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_97846190e7c0137540cbe73860a4234e = $(`<div id="html_97846190e7c0137540cbe73860a4234e" style="width: 100.0%; height: 100.0%;"><b>新竹縣</b><br>日期:2026-10-01<br>最低溫:24.0 °C<br>最高溫:32.0 °C<br>平均溫:28.0 °C</div>`)[0];
-                popup_fcecea86d3aae891f89c6b1a4f3b72bd.setContent(html_97846190e7c0137540cbe73860a4234e);
-            
-        
 
-        circle_marker_fc41b341373ae01a6379636524b17a79.bindPopup(popup_fcecea86d3aae891f89c6b1a4f3b72bd)
+
+                var html_0b16d832631c86296183d99fc8cbb6ba = $(`<div id="html_0b16d832631c86296183d99fc8cbb6ba" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;新竹縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;24.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_69b2454967c553621b76eefb60fec83c.setContent(html_0b16d832631c86296183d99fc8cbb6ba);
+
+
+
+        circle_marker_c14682b7c54392a5d7825d41d79288b2.bindPopup(popup_69b2454967c553621b76eefb60fec83c)
         ;
 
-        
-    
-    
-            circle_marker_fc41b341373ae01a6379636524b17a79.bindTooltip(
+
+
+
+            circle_marker_c14682b7c54392a5d7825d41d79288b2.bindTooltip(
                 `<div>
-                     新竹縣
+                     新竹縣 · 28.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_b1c9ebfb1f3b2f7048f56cb7002b5c6f = L.circleMarker(
+
+
+            var circle_marker_2214c8c4f3d10df019eb12aa64a38577 = L.circleMarker(
                 [24.9937, 121.301],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_c175904543fc81bbc906f2399585ae1a = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_987e2280968ef1fe17ec593b3bc0cfc3 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_143e475b7a2df0459afbfea8fa4ecb87 = $(`<div id="html_143e475b7a2df0459afbfea8fa4ecb87" style="width: 100.0%; height: 100.0%;"><b>桃園市</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:34.0 °C<br>平均溫:29.5 °C</div>`)[0];
-                popup_c175904543fc81bbc906f2399585ae1a.setContent(html_143e475b7a2df0459afbfea8fa4ecb87);
-            
-        
 
-        circle_marker_b1c9ebfb1f3b2f7048f56cb7002b5c6f.bindPopup(popup_c175904543fc81bbc906f2399585ae1a)
+
+                var html_879646b57b481efe79ec4cd1b1bde2ce = $(`<div id="html_879646b57b481efe79ec4cd1b1bde2ce" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;桃園市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;34.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_987e2280968ef1fe17ec593b3bc0cfc3.setContent(html_879646b57b481efe79ec4cd1b1bde2ce);
+
+
+
+        circle_marker_2214c8c4f3d10df019eb12aa64a38577.bindPopup(popup_987e2280968ef1fe17ec593b3bc0cfc3)
         ;
 
-        
-    
-    
-            circle_marker_b1c9ebfb1f3b2f7048f56cb7002b5c6f.bindTooltip(
+
+
+
+            circle_marker_2214c8c4f3d10df019eb12aa64a38577.bindTooltip(
                 `<div>
-                     桃園市
+                     桃園市 · 29.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_0fda4852c7ae3d13ade24a0870eb9257 = L.circleMarker(
+
+
+            var circle_marker_49c01ed2a86890b20bb918d3f72d0a42 = L.circleMarker(
                 [23.5712, 119.5793],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_6db32ddc6a9d1d08578adcce758b2272 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_40782cd8399e7bffa8eba3e5dc785175 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_278e2a18f0eb58318615fe3d183f9220 = $(`<div id="html_278e2a18f0eb58318615fe3d183f9220" style="width: 100.0%; height: 100.0%;"><b>澎湖縣</b><br>日期:2026-10-01<br>最低溫:26.0 °C<br>最高溫:31.0 °C<br>平均溫:28.5 °C</div>`)[0];
-                popup_6db32ddc6a9d1d08578adcce758b2272.setContent(html_278e2a18f0eb58318615fe3d183f9220);
-            
-        
 
-        circle_marker_0fda4852c7ae3d13ade24a0870eb9257.bindPopup(popup_6db32ddc6a9d1d08578adcce758b2272)
+
+                var html_3c6ab11659d257b2f9b375628c471fbe = $(`<div id="html_3c6ab11659d257b2f9b375628c471fbe" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;澎湖縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_40782cd8399e7bffa8eba3e5dc785175.setContent(html_3c6ab11659d257b2f9b375628c471fbe);
+
+
+
+        circle_marker_49c01ed2a86890b20bb918d3f72d0a42.bindPopup(popup_40782cd8399e7bffa8eba3e5dc785175)
         ;
 
-        
-    
-    
-            circle_marker_0fda4852c7ae3d13ade24a0870eb9257.bindTooltip(
+
+
+
+            circle_marker_49c01ed2a86890b20bb918d3f72d0a42.bindTooltip(
                 `<div>
-                     澎湖縣
+                     澎湖縣 · 28.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_72d95d43cb43f9e4f06461895ac877b0 = L.circleMarker(
+
+
+            var circle_marker_4192d3591b2b3a2bc13db547106cc838 = L.circleMarker(
                 [24.1477, 120.6736],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_1243266405d95a6987d16a9899a11fc5 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_8c8477285f6aa4fc1f85bbc1999f0f64 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_aeb3e7ceb03fdc2b02470570fb7046a9 = $(`<div id="html_aeb3e7ceb03fdc2b02470570fb7046a9" style="width: 100.0%; height: 100.0%;"><b>臺中市</b><br>日期:2026-10-01<br>最低溫:26.0 °C<br>最高溫:33.0 °C<br>平均溫:29.5 °C</div>`)[0];
-                popup_1243266405d95a6987d16a9899a11fc5.setContent(html_aeb3e7ceb03fdc2b02470570fb7046a9);
-            
-        
 
-        circle_marker_72d95d43cb43f9e4f06461895ac877b0.bindPopup(popup_1243266405d95a6987d16a9899a11fc5)
+
+                var html_8c0bd94c6469b227339385a0e0c9e519 = $(`<div id="html_8c0bd94c6469b227339385a0e0c9e519" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺中市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;33.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_8c8477285f6aa4fc1f85bbc1999f0f64.setContent(html_8c0bd94c6469b227339385a0e0c9e519);
+
+
+
+        circle_marker_4192d3591b2b3a2bc13db547106cc838.bindPopup(popup_8c8477285f6aa4fc1f85bbc1999f0f64)
         ;
 
-        
-    
-    
-            circle_marker_72d95d43cb43f9e4f06461895ac877b0.bindTooltip(
+
+
+
+            circle_marker_4192d3591b2b3a2bc13db547106cc838.bindTooltip(
                 `<div>
-                     臺中市
+                     臺中市 · 29.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_26d5b4a664fe18ad6d6eb729e6b145c5 = L.circleMarker(
+
+
+            var circle_marker_664206b6be9259663cf2394221876af7 = L.circleMarker(
                 [25.033, 121.5654],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_fe6f708c481bdfb9d7063b17cd8b50ed = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_a31983b5557958a940fd24614bc03aae = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_2a8697c9ea6368b23389f31067441d46 = $(`<div id="html_2a8697c9ea6368b23389f31067441d46" style="width: 100.0%; height: 100.0%;"><b>臺北市</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:36.0 °C<br>平均溫:30.5 °C</div>`)[0];
-                popup_fe6f708c481bdfb9d7063b17cd8b50ed.setContent(html_2a8697c9ea6368b23389f31067441d46);
-            
-        
 
-        circle_marker_26d5b4a664fe18ad6d6eb729e6b145c5.bindPopup(popup_fe6f708c481bdfb9d7063b17cd8b50ed)
+
+                var html_c9036d49513b1999937f9bc37879b513 = $(`<div id="html_c9036d49513b1999937f9bc37879b513" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺北市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;36.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;30.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_a31983b5557958a940fd24614bc03aae.setContent(html_c9036d49513b1999937f9bc37879b513);
+
+
+
+        circle_marker_664206b6be9259663cf2394221876af7.bindPopup(popup_a31983b5557958a940fd24614bc03aae)
         ;
 
-        
-    
-    
-            circle_marker_26d5b4a664fe18ad6d6eb729e6b145c5.bindTooltip(
+
+
+
+            circle_marker_664206b6be9259663cf2394221876af7.bindTooltip(
                 `<div>
-                     臺北市
+                     臺北市 · 30.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_3da3e22e4f7a7c96814376060dff13ed = L.circleMarker(
+
+
+            var circle_marker_a107712cd6da0a35eaeab53b380b7f3a = L.circleMarker(
                 [22.9999, 120.2269],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_2d71d042b05a88a287982a95ff7dbea9 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_8d6d9c5bba40b2f04af13efd04343e7c = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_09490772a9aa2848fbc7444a3411a9f7 = $(`<div id="html_09490772a9aa2848fbc7444a3411a9f7" style="width: 100.0%; height: 100.0%;"><b>臺南市</b><br>日期:2026-10-01<br>最低溫:27.0 °C<br>最高溫:32.0 °C<br>平均溫:29.5 °C</div>`)[0];
-                popup_2d71d042b05a88a287982a95ff7dbea9.setContent(html_09490772a9aa2848fbc7444a3411a9f7);
-            
-        
 
-        circle_marker_3da3e22e4f7a7c96814376060dff13ed.bindPopup(popup_2d71d042b05a88a287982a95ff7dbea9)
+
+                var html_97ccf7e9bd98cd4b06ef41f22ba60c7d = $(`<div id="html_97ccf7e9bd98cd4b06ef41f22ba60c7d" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺南市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;27.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_8d6d9c5bba40b2f04af13efd04343e7c.setContent(html_97ccf7e9bd98cd4b06ef41f22ba60c7d);
+
+
+
+        circle_marker_a107712cd6da0a35eaeab53b380b7f3a.bindPopup(popup_8d6d9c5bba40b2f04af13efd04343e7c)
         ;
 
-        
-    
-    
-            circle_marker_3da3e22e4f7a7c96814376060dff13ed.bindTooltip(
+
+
+
+            circle_marker_a107712cd6da0a35eaeab53b380b7f3a.bindTooltip(
                 `<div>
-                     臺南市
+                     臺南市 · 29.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_7449492299735392e412592aa57a6274 = L.circleMarker(
+
+
+            var circle_marker_e97d51ad63566dac6f8d729597034a40 = L.circleMarker(
                 [22.7554, 121.15],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_62b8fb421b74fe06a0afd97b4c95e566 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_d358e262b147f59daf3e0654a4e5428b = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_f325c0f026154da7c684a3b6c1672fba = $(`<div id="html_f325c0f026154da7c684a3b6c1672fba" style="width: 100.0%; height: 100.0%;"><b>臺東縣</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:32.0 °C<br>平均溫:28.5 °C</div>`)[0];
-                popup_62b8fb421b74fe06a0afd97b4c95e566.setContent(html_f325c0f026154da7c684a3b6c1672fba);
-            
-        
 
-        circle_marker_7449492299735392e412592aa57a6274.bindPopup(popup_62b8fb421b74fe06a0afd97b4c95e566)
+
+                var html_44d78916504dad73c97e24a8fc852e56 = $(`<div id="html_44d78916504dad73c97e24a8fc852e56" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;臺東縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_d358e262b147f59daf3e0654a4e5428b.setContent(html_44d78916504dad73c97e24a8fc852e56);
+
+
+
+        circle_marker_e97d51ad63566dac6f8d729597034a40.bindPopup(popup_d358e262b147f59daf3e0654a4e5428b)
         ;
 
-        
-    
-    
-            circle_marker_7449492299735392e412592aa57a6274.bindTooltip(
+
+
+
+            circle_marker_e97d51ad63566dac6f8d729597034a40.bindTooltip(
                 `<div>
-                     臺東縣
+                     臺東縣 · 28.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_e00d1d57a5f03fc6a8ab616049882e4e = L.circleMarker(
+
+
+            var circle_marker_59ac09b77bc17a783ebf7731e401e882 = L.circleMarker(
                 [23.9911, 121.6112],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_71303a745246c52ab152b61ab6d46b32 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_3c737eb62f9f6446a551d9e7edcb3c8c = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_299dc47fa08758f9ce7d1b23079f9504 = $(`<div id="html_299dc47fa08758f9ce7d1b23079f9504" style="width: 100.0%; height: 100.0%;"><b>花蓮縣</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:31.0 °C<br>平均溫:28.0 °C</div>`)[0];
-                popup_71303a745246c52ab152b61ab6d46b32.setContent(html_299dc47fa08758f9ce7d1b23079f9504);
-            
-        
 
-        circle_marker_e00d1d57a5f03fc6a8ab616049882e4e.bindPopup(popup_71303a745246c52ab152b61ab6d46b32)
+
+                var html_02354b685c1eeab5d6845a08402181c0 = $(`<div id="html_02354b685c1eeab5d6845a08402181c0" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;花蓮縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_3c737eb62f9f6446a551d9e7edcb3c8c.setContent(html_02354b685c1eeab5d6845a08402181c0);
+
+
+
+        circle_marker_59ac09b77bc17a783ebf7731e401e882.bindPopup(popup_3c737eb62f9f6446a551d9e7edcb3c8c)
         ;
 
-        
-    
-    
-            circle_marker_e00d1d57a5f03fc6a8ab616049882e4e.bindTooltip(
+
+
+
+            circle_marker_59ac09b77bc17a783ebf7731e401e882.bindTooltip(
                 `<div>
-                     花蓮縣
+                     花蓮縣 · 28.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_b9859e05492d4705410f5fa9075599ca = L.circleMarker(
+
+
+            var circle_marker_a31fd7da04832a0b9a72790bc9fa8f31 = L.circleMarker(
                 [24.5602, 120.8214],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_20b9c248c4f5b3f5f10c6845c3e0d9e1 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_3cfae6c2a3facc67f1da9edfe0290709 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_8c3fd1e2dc14fb90d7c188959ec4607d = $(`<div id="html_8c3fd1e2dc14fb90d7c188959ec4607d" style="width: 100.0%; height: 100.0%;"><b>苗栗縣</b><br>日期:2026-10-01<br>最低溫:23.0 °C<br>最高溫:33.0 °C<br>平均溫:28.0 °C</div>`)[0];
-                popup_20b9c248c4f5b3f5f10c6845c3e0d9e1.setContent(html_8c3fd1e2dc14fb90d7c188959ec4607d);
-            
-        
 
-        circle_marker_b9859e05492d4705410f5fa9075599ca.bindPopup(popup_20b9c248c4f5b3f5f10c6845c3e0d9e1)
+
+                var html_2ab635a67f52070cf4e2a22b4bc51907 = $(`<div id="html_2ab635a67f52070cf4e2a22b4bc51907" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;苗栗縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;23.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;33.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_3cfae6c2a3facc67f1da9edfe0290709.setContent(html_2ab635a67f52070cf4e2a22b4bc51907);
+
+
+
+        circle_marker_a31fd7da04832a0b9a72790bc9fa8f31.bindPopup(popup_3cfae6c2a3facc67f1da9edfe0290709)
         ;
 
-        
-    
-    
-            circle_marker_b9859e05492d4705410f5fa9075599ca.bindTooltip(
+
+
+
+            circle_marker_a31fd7da04832a0b9a72790bc9fa8f31.bindTooltip(
                 `<div>
-                     苗栗縣
+                     苗栗縣 · 28.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_d1df65fd7f8d1cc92878d4762c6dc25b = L.circleMarker(
+
+
+            var circle_marker_34754ca56bfe27f23adac94357784043 = L.circleMarker(
                 [26.1605, 119.9517],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_c7997d0dc7dea1bad0c76bcb9f2d64f1 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_8e3c4b12889e1aeec3ece76a7ece6da9 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_c30848c0e074670b4fa73846d7475bcb = $(`<div id="html_c30848c0e074670b4fa73846d7475bcb" style="width: 100.0%; height: 100.0%;"><b>連江縣</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:31.0 °C<br>平均溫:28.0 °C</div>`)[0];
-                popup_c7997d0dc7dea1bad0c76bcb9f2d64f1.setContent(html_c30848c0e074670b4fa73846d7475bcb);
-            
-        
 
-        circle_marker_d1df65fd7f8d1cc92878d4762c6dc25b.bindPopup(popup_c7997d0dc7dea1bad0c76bcb9f2d64f1)
+
+                var html_24ac0987607ad979bdea881d9403aa71 = $(`<div id="html_24ac0987607ad979bdea881d9403aa71" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;連江縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;31.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;28.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_8e3c4b12889e1aeec3ece76a7ece6da9.setContent(html_24ac0987607ad979bdea881d9403aa71);
+
+
+
+        circle_marker_34754ca56bfe27f23adac94357784043.bindPopup(popup_8e3c4b12889e1aeec3ece76a7ece6da9)
         ;
 
-        
-    
-    
-            circle_marker_d1df65fd7f8d1cc92878d4762c6dc25b.bindTooltip(
+
+
+
+            circle_marker_34754ca56bfe27f23adac94357784043.bindTooltip(
                 `<div>
-                     連江縣
+                     連江縣 · 28.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_2fa297cd2bd8fa866b4cc99919193e73 = L.circleMarker(
+
+
+            var circle_marker_f36c79021b3298ff8edea729583e18ef = L.circleMarker(
                 [24.4494, 118.3767],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_4fcfe5848b4d9900fd157c1459581710 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_24f97d9f2383c4e6a39730755bcdae6e = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_cfff1647550350777af9c5bbdbfd976b = $(`<div id="html_cfff1647550350777af9c5bbdbfd976b" style="width: 100.0%; height: 100.0%;"><b>金門縣</b><br>日期:2026-10-01<br>最低溫:26.0 °C<br>最高溫:32.0 °C<br>平均溫:29.0 °C</div>`)[0];
-                popup_4fcfe5848b4d9900fd157c1459581710.setContent(html_cfff1647550350777af9c5bbdbfd976b);
-            
-        
 
-        circle_marker_2fa297cd2bd8fa866b4cc99919193e73.bindPopup(popup_4fcfe5848b4d9900fd157c1459581710)
+
+                var html_1f061b016aee940153566c67ff03a5ce = $(`<div id="html_1f061b016aee940153566c67ff03a5ce" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;金門縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;26.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_24f97d9f2383c4e6a39730755bcdae6e.setContent(html_1f061b016aee940153566c67ff03a5ce);
+
+
+
+        circle_marker_f36c79021b3298ff8edea729583e18ef.bindPopup(popup_24f97d9f2383c4e6a39730755bcdae6e)
         ;
 
-        
-    
-    
-            circle_marker_2fa297cd2bd8fa866b4cc99919193e73.bindTooltip(
+
+
+
+            circle_marker_f36c79021b3298ff8edea729583e18ef.bindTooltip(
                 `<div>
-                     金門縣
+                     金門縣 · 29.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_cd9e75610ebddbea5b759b49b261ad7b = L.circleMarker(
+
+
+            var circle_marker_318949b24c8c9adf9cb6c973ac889422 = L.circleMarker(
                 [23.7092, 120.4313],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_e955ee63046322a29abf50da6aed422f = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_e9312cc294bb1b882aca8aba0ecd3e17 = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_f198e55670d96ecabe0f16b998768d8f = $(`<div id="html_f198e55670d96ecabe0f16b998768d8f" style="width: 100.0%; height: 100.0%;"><b>雲林縣</b><br>日期:2026-10-01<br>最低溫:25.0 °C<br>最高溫:33.0 °C<br>平均溫:29.0 °C</div>`)[0];
-                popup_e955ee63046322a29abf50da6aed422f.setContent(html_f198e55670d96ecabe0f16b998768d8f);
-            
-        
 
-        circle_marker_cd9e75610ebddbea5b759b49b261ad7b.bindPopup(popup_e955ee63046322a29abf50da6aed422f)
+
+                var html_2dcda4e05c2cb50f222b5f1ecb116ee9 = $(`<div id="html_2dcda4e05c2cb50f222b5f1ecb116ee9" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;雲林縣&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;25.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;33.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.0 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_e9312cc294bb1b882aca8aba0ecd3e17.setContent(html_2dcda4e05c2cb50f222b5f1ecb116ee9);
+
+
+
+        circle_marker_318949b24c8c9adf9cb6c973ac889422.bindPopup(popup_e9312cc294bb1b882aca8aba0ecd3e17)
         ;
 
-        
-    
-    
-            circle_marker_cd9e75610ebddbea5b759b49b261ad7b.bindTooltip(
+
+
+
+            circle_marker_318949b24c8c9adf9cb6c973ac889422.bindTooltip(
                 `<div>
-                     雲林縣
+                     雲林縣 · 29.0°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            var circle_marker_cb199a9e2c75cf6f5e01c095ff36c387 = L.circleMarker(
+
+
+            var circle_marker_5e1626fd89b85b6f3ccbc961018daa49 = L.circleMarker(
                 [22.6273, 120.3014],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
-            ).addTo(map_62d9807a3b1b09a09c09ee489791c6c2);
-        
-    
-        var popup_b71f6ac594cd28fe86dd7a884f0745b7 = L.popup({
-  "maxWidth": 260,
+                {"bubblingMouseEvents": true, "className": "weather-marker", "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_d2eb78d2c98c64c9819de412a26573c2);
+
+
+        var popup_97ba10d94c7ab8ca9812093bda0070ee = L.popup({
+  "maxWidth": 280,
 });
 
-        
-            
-                var html_1ffea49ecdf69d6db4ac0f546eb08e07 = $(`<div id="html_1ffea49ecdf69d6db4ac0f546eb08e07" style="width: 100.0%; height: 100.0%;"><b>高雄市</b><br>日期:2026-10-01<br>最低溫:27.0 °C<br>最高溫:32.0 °C<br>平均溫:29.5 °C</div>`)[0];
-                popup_b71f6ac594cd28fe86dd7a884f0745b7.setContent(html_1ffea49ecdf69d6db4ac0f546eb08e07);
-            
-        
 
-        circle_marker_cb199a9e2c75cf6f5e01c095ff36c387.bindPopup(popup_b71f6ac594cd28fe86dd7a884f0745b7)
+
+                var html_e3090a06ad73fa48ed3f189e935a6ca3 = $(`<div id="html_e3090a06ad73fa48ed3f189e935a6ca3" style="width: 100.0%; height: 100.0%;">     &lt;section class=&#34;weather-popup&#34;&gt;       &lt;div class=&#34;weather-popup__eyebrow&#34;&gt;DAILY FORECAST&lt;/div&gt;       &lt;div class=&#34;weather-popup__title&#34;&gt;高雄市&lt;/div&gt;       &lt;div class=&#34;weather-popup__date&#34;&gt;2026-10-01&lt;/div&gt;       &lt;div class=&#34;weather-popup__temperatures&#34;&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--low&#34;&gt;           &lt;span&gt;最低溫&lt;/span&gt;&lt;strong&gt;27.0°&lt;/strong&gt;         &lt;/div&gt;         &lt;div class=&#34;weather-popup__temperature weather-popup__temperature--high&#34;&gt;           &lt;span&gt;最高溫&lt;/span&gt;&lt;strong&gt;32.0°&lt;/strong&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;div class=&#34;weather-popup__average&#34;&gt;&lt;span&gt;平均溫&lt;/span&gt;&lt;strong&gt;29.5 °C&lt;/strong&gt;&lt;/div&gt;     &lt;/section&gt;     </div>`)[0];
+                popup_97ba10d94c7ab8ca9812093bda0070ee.setContent(html_e3090a06ad73fa48ed3f189e935a6ca3);
+
+
+
+        circle_marker_5e1626fd89b85b6f3ccbc961018daa49.bindPopup(popup_97ba10d94c7ab8ca9812093bda0070ee)
         ;
 
-        
-    
-    
-            circle_marker_cb199a9e2c75cf6f5e01c095ff36c387.bindTooltip(
+
+
+
+            circle_marker_5e1626fd89b85b6f3ccbc961018daa49.bindTooltip(
                 `<div>
-                     高雄市
+                     高雄市 · 29.5°C
                  </div>`,
                 {
+  "className": "weather-tooltip",
   "sticky": true,
 }
             );
-        
-    
-            map_62d9807a3b1b09a09c09ee489791c6c2.fitBounds(
+
+
+    (function () {
+      const map = map_d2eb78d2c98c64c9819de412a26573c2;
+      const markers = [circle_marker_eedef3582e220652a27d817fb2b46837,circle_marker_596879ee41aa26f11145bc11d866240a,circle_marker_1e28e86d899e42f7d1d0621765e6c1a0,circle_marker_ec07e7642df2a1c801fa9a9b1a34082a,circle_marker_f61e2a10c1e693e3cac9c0d5219bf935,circle_marker_edf0d96a30a9e45027388043ccbf3ed8,circle_marker_bbd5a5a2c0ee0bdb75af7c2756baca80,circle_marker_f1069011f8fbd89cc8799b73525fcef4,circle_marker_17f699853e643f19cd2e73781cd26685,circle_marker_c14682b7c54392a5d7825d41d79288b2,circle_marker_2214c8c4f3d10df019eb12aa64a38577,circle_marker_49c01ed2a86890b20bb918d3f72d0a42,circle_marker_4192d3591b2b3a2bc13db547106cc838,circle_marker_664206b6be9259663cf2394221876af7,circle_marker_a107712cd6da0a35eaeab53b380b7f3a,circle_marker_e97d51ad63566dac6f8d729597034a40,circle_marker_59ac09b77bc17a783ebf7731e401e882,circle_marker_a31fd7da04832a0b9a72790bc9fa8f31,circle_marker_34754ca56bfe27f23adac94357784043,circle_marker_f36c79021b3298ff8edea729583e18ef,circle_marker_318949b24c8c9adf9cb6c973ac889422,circle_marker_5e1626fd89b85b6f3ccbc961018daa49];
+      const minZoom = 8;
+      const hint = L.control({ position: "topleft" });
+      hint.onAdd = function () {
+        const element = L.DomUtil.create("div", "weather-zoom-hint");
+        element.textContent = "放大地圖，查看各縣市天氣";
+        L.DomEvent.disableClickPropagation(element);
+        return element;
+      };
+      hint.addTo(map);
+      function updateMarkerVisibility() {
+        const visible = map.getZoom() >= minZoom;
+        markers.forEach(function (marker) {
+          if (visible && !map.hasLayer(marker)) marker.addTo(map);
+          else if (!visible && map.hasLayer(marker)) map.removeLayer(marker);
+        });
+        hint.getContainer().style.display = visible ? "none" : "block";
+      }
+      map.on("zoomend", updateMarkerVisibility);
+      updateMarkerVisibility();
+    })();
+
+
+            map_d2eb78d2c98c64c9819de412a26573c2.fitBounds(
                 [[21.8, 118.1], [26.4, 122.1]],
                 {}
             );
-        
+
 </script>
 </html>
